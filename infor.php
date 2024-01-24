@@ -33,20 +33,36 @@ $jabatan = $_GET['nama'];
     gap: 10px;
   }
 
+  .containerr {
+    background-image: url('asset/LANDSCAPE.jpg');
+    background-size: cover;
+    /* z-index: 99; */
+  }
 
 
   /* Media query for screens with a width of 768 pixels or more (typical tablets and desktops) */
   @media screen and (min-width: 768px) {
     .banner {
-      background-color: #ffd139;
+      background: linear-gradient(#ffffff1c, rgba(0, 0, 0, 0.684));
+
+      background-size: cover;
+      height: 100vh;
       /* Change background color for desktop screens */
     }
   }
 
   /* Media query for screens with a width of 480 pixels or less (typical mobile screens) */
   @media screen and (max-width: 480px) {
+    .containerr {
+      background-image: url('asset/POTRAIT.jpg');
+      background-size: cover;
+      /* z-index: 99; */
+    }
+
     .banner {
-      background-image: url('asset/IMG_75405.jpg');
+      background: linear-gradient(#ffffff1c, rgba(0, 0, 0, 0.684));
+
+      background-size: cover;
       /* Change background color for mobile screens */
     }
   }
@@ -69,41 +85,46 @@ $jabatan = $_GET['nama'];
               </button></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#"><ion-icon name="mail"></ion-icon></a>
+            <a href="" class="nav-link active"> <ion-icon onclick="sendEmail()" name="mail"></ion-icon></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#"><ion-icon name="logo-linkedin"></ion-icon></a>
+            <a class="nav-link active" href="https://www.linkedin.com/company/akuibirdnest/mycompany/"><ion-icon
+                name="logo-linkedin"></ion-icon></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+            <a class="nav-link active" href="https://www.instagram.com/akuibirdnest"><ion-icon
+                name="logo-instagram"></ion-icon></a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <!-- hero -->
-  <div class="banner d-flex flex-column justify-content-center align-items-center">
-    <h2 class="mt-5 font-weight-light display-4">
+  <div class="containerr">
+    <div class="banner d-flex flex-column justify-content-center align-items-center">
 
-    </h2>
-    <div>
-      <span style="margin-right: 10px"><ion-icon name="pin" class="text-dark"></ion-icon>
+      <h2 class="mt-5 font-weight-light display-4">
 
-        Tembelang &nbsp; <i class="fa-solid fa-building"></i>, Jombang,
-        Indonesia
-      </span>
+      </h2>
+      <div>
+        <span style="margin-right: 10px"><ion-icon name="pin" class="text-dark"></ion-icon>
+
+          Tembelang &nbsp; <i class="fa-solid fa-building"></i>, Jombang,
+          Indonesia
+        </span>
+      </div>
+      <!-- <a href=""> -->
+      <button type="button" class="btn btn-lg btn-outline-light mt-3">
+        Lamar Ke Posisi
+      </button>
     </div>
-    <!-- <a href=""> -->
-    <button type="button" class="btn btn-lg btn-outline-light mt-3">
-      Lamar Ke Posisi
-    </button>
   </div>
   <section class="bawah">
     <div class="text- mb-3">
       <div class="text-primary">Job Openings</div>
       <ion-icon class="fs-4" name="arrow-dropright"></ion-icon>
-
     </div>
+
 
     <div class="container">
       <h2>
@@ -146,8 +167,19 @@ $jabatan = $_GET['nama'];
   <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
   <script src="https://kit.fontawesome.com/3e890378ee.js" crossorigin="anonymous"></script>
   <script>
+    function sendEmail() {
+      // Replace 'email@example.com' with the actual email address
+      var emailAddress = 'recruitment@akuibirdnest.com';
+
+      // Use the mailto URI scheme to create a mailto link
+      var mailtoLink = 'mailto:' + emailAddress;
+
+      // Open the default email client with the new email
+      window.location.href = mailtoLink;
+    }
     $(document).ready(function () {
       var nama = <?= $jabatan ?>;
+
       // // Button click event
       // var rejrt = document.getElementById('rekruitment');
       // var jobdesc = document.getElementById('jobdesc');
