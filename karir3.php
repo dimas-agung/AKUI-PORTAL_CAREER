@@ -48,10 +48,6 @@
     font-family: "poppins", sans-serif;
   }
 
-  .hide {
-    display: none !important;
-  }
-
   .video-bg {
     position: absolute;
     bottom: 0;
@@ -136,14 +132,18 @@
 
   @media only screen and (max-width: 800px) {
     .hero .search-box {
-      height: 200px;
+      height: 100px;
+      width: 80%;
     }
 
     .search-box form {
-      width: 100%;
+      /* width: 100%; */
       margin: 20px;
-      display: block;
-      height: 100%;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      /* height: 100%; */
     }
 
     .col {
@@ -168,7 +168,7 @@
 
     form button {
       margin: 20px 0 0 0;
-      width: 100%;
+      /* width: 100%; */
     }
   }
 
@@ -230,6 +230,10 @@
       height: auto;
       width: auto;
     }
+  }
+
+  .hide {
+    display: none !important;
   }
 </style>
 
