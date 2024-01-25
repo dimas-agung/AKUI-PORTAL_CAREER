@@ -7,6 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
   <script src="script.js" defer></script>
+  <link rel="icon" href="asset/logo2.svg">
   <title>Career</title>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -435,16 +436,16 @@
           // Set href based on magang_count using a ternary operator
           document.querySelector('#mgBtn').addEventListener('click', function () {
             // Redirect to 'untitled.php' if magang_count is greater than 0
-            window.location.href = (magang_count > 0) ? 'Untitled-1.php' : '#';
+            window.location.href = (magang_count > 0) ? 'karir1.php' : '#';
           });
 
           document.querySelector('#expBtn').addEventListener('click', function () {
             // Redirect to 'Untitled-1.php' if magang_count is 1, otherwise redirect to '#'
-            window.location.href = (exp_count > 0) ? 'Untitled-1.php' : '#';
+            window.location.href = (exp_count > 0) ? 'karir2.php' : '#';
           });
           document.querySelector('#freshBtn').addEventListener('click', function () {
             // Redirect to 'Untitled-1.php' if magang_count is 1, otherwise redirect to '#'
-            window.location.href = (fresh_count > 0) ? 'Untitled-1.php' : '#';
+            window.location.href = (fresh_count > 0) ? 'karir3.php' : '#';
           });
 
           // Update other HTML elements

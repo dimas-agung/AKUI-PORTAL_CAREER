@@ -14,6 +14,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Montserrat&family=Noto+Serif&family=Open+Sans&family=Poppins:wght@200;500&family=Roboto:wght@300&display=swap"
     rel="stylesheet">
+  <link rel="icon" href="asset/logo2.svg">
 </head>
 <style>
   a {
@@ -25,6 +26,10 @@
 
   .PT {
     font-family: "Cinzel Decorative";
+  }
+
+  nav {
+    background: none;
   }
 
   .hero {
@@ -43,6 +48,10 @@
     font-family: "poppins", sans-serif;
   }
 
+  .hide {
+    display: none !important;
+  }
+
   .video-bg {
     position: absolute;
     bottom: 0;
@@ -53,7 +62,7 @@
   }
 
   .hero .search-box {
-    width: 80%;
+    width: 50%;
     height: 100px;
     backdrop-filter: blur;
     border: white solid 1px;
@@ -65,8 +74,8 @@
 
   .search-box form {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    /* flex-direction: column; */
+    /* flex-wrap: wrap; */
     width: 100%;
     font-size: 20px;
     align-items: center;
@@ -127,7 +136,7 @@
 
   @media only screen and (max-width: 800px) {
     .hero .search-box {
-      height: 350px;
+      height: 200px;
     }
 
     .search-box form {
@@ -225,58 +234,27 @@
 </style>
 
 <body>
-  <nav class="navbar fixed-top navbar-expand-lg" style="background:#ffffff48;">
-    <div class="container-fluid" style="display:flex;justify-content:center;">
-      <a class="navbar-brand" href="#">
-        <img src="asset/LOGO NO REG.png" alt="" style="max-width: 300px;"></a>
-      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav " style="margin-left: 250px;">
-          <li class="nav-item " style="color:black;">
-            <h1 style="font-family: 'Cinzel Decorative';">PT. Akui Bird Nest Karir</h1>
-          </li>
 
-        </ul> -->
-    </div>
-    </div>
-  </nav>
   <section class="hero">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid" style="display:flex;justify-content:center;">
+        <a class="navbar-brand" href="index.php">
+          <img src="asset/LOGO NO REG.png" alt="" style="max-width: 300px;"></a>
+      </div>
+      </div>
+    </nav>
     <div class="text">
       <h1>Career opening</h1>
     </div>
     <div class="search-box">
-      <form>
-        <div class="col ">
+      <form id="searchForm">
+        <div class="col">
           <label for="sc">Category</label>
-          <select name="" id="">
+          <select name="category" id="sc">
 
-            <option value="" id="sc" selected>Select category</option>
-            <option value="">Berpengalaman</option>
-            <option value="">Program magang</option>
-          </select>
-        </div>
-        <div class="col">
-          <label for="te">Job title</label>
-          <div class="input-t"></div>
-          <input id="te" placeholder="type your job here" type="text">
-        </div>
-        <div class="col">
-          <label for="te">Job title</label>
-          <select name="" id="">
-            <option value="">Select category</option>
-            <option value="">Berpengalaman</option>
-            <option value="">Program magang</option>
-          </select>
-        </div>
-        <div class="col">
-          <label for="te">Job title</label>
-          <select name="" id="">
-            <option value="">Select category</option>
-            <option value="">Berpengalaman</option>
-            <option value="">Program magang</option>
+            <option value="" selected>Select category</option>
+            <option value="karir1.php">Berpengalaman</option>
+            <option value="karir3.php">Fresh Graduate</option>
           </select>
         </div>
         <button type="submit"><ion-icon name="search-outline"></ion-icon></button>
@@ -288,38 +266,7 @@
     <div id="output"></div>
     <div id="output1"></div>
 
-    <!-- <div class="job_card" onclick="location.href='infor.php'">
-      <div class="job">
-        <div class="text">
-          <span class="category">Operator</span>
-          <h2>Operator Cabut</h2>
-          <span>Operator</span>
-        </div>
-      </div>
-      <ion-icon name="arrow-forward-outline"></ion-icon>
-    </div>
 
-    <div class="job_card" onclick="location.href='infor.php'">
-      <div class="job">
-        <div class="text">
-          <span class="category">Operator cetak</span>
-          <h2>Operator cetak</h2>
-          <span>Operator cetak</span>
-        </div>
-      </div>
-      <ion-icon name="arrow-forward-outline"></ion-icon>
-    </div>
-
-    <div class="job_card" onclick="location.href='infor.php'">
-      <div class="job">
-        <div class="text">
-          <Span class="category">Sanitasi</Span>
-          <h2>Sanitasi</h2>
-          <span>Sanitasi Perusahaan</span>
-        </div>
-      </div>
-      <ion-icon name="arrow-forward-outline"></ion-icon>
-    </div> -->
   </section>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
@@ -327,7 +274,21 @@
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script>
+    document.getElementById('searchForm').addEventListener('submit', function (event) {
+      // Prevent the default form submission
+      event.preventDefault();
 
+      // Get the selected option value
+      var selectedValue = document.getElementById('sc').value;
+
+      // If a value is selected, set the form action to the selected value
+      if (selectedValue) {
+        this.action = selectedValue;
+        this.submit(); // Submit the form
+      } else {
+        alert('Please select a category');
+      }
+    });
 
     $(document).ready(function () {
       //   var jobs = [`ADMIN DOCUMENT CONTROL SPECIALIST INTERNSHIP`, `HSE SPECIALIST (SUPERVISOR LEVEL)`, `SALES DAN MARKETING MANAGER (MARKET CHINA)`, `JURU MASAK`];
@@ -378,19 +339,38 @@
 
             // Iterate through the array and build HTML content
             jobData.forEach(function (job) {
-              htmlContent += `
-          <a class="job_card" href="infor.php?nama=${job.id}">
-            <div class="job">
-              <div class="text">
-                <span class="category">${job.job_title.nama}</span>
-                <h2>${job.job_title.nama}</h2>
-                <span>${job.job_title.nama}</span>
-              </div>
-            </div>
-            <ion-icon name="arrow-forward-outline"></ion-icon>
-          </a>
-        `;
+              // Check if fresh_graduate is 'YA'
+              if (job.job_requirement.fresh_graduate === 'Tidak') {
+                // If 'YA', add class 'hide'
+                htmlContent += `
+      <a class="job_card hide" href="infor.php?nama=${job.id}">
+        <div class="job">
+          <div class="text">
+            <span class="category">${job.job_title.nama}</span>
+            <h2>${job.job_title.nama}</h2>
+            <span>${job.job_title.nama}</span>
+          </div>
+        </div>
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </a>
+    `;
+              } else if (job.job_requirement.fresh_graduate === 'Ya') {
+                // If not 'YA', add class 'wau'
+                htmlContent += `
+      <a class="job_card wau" href="infor.php?nama=${job.id}">
+        <div class="job">
+          <div class="text">
+            <span class="category">${job.job_title.nama}</span>
+            <h2>${job.job_title.nama}</h2>
+            <span>${job.job_title.nama}</span>
+          </div>
+        </div>
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </a>
+    `;
+              }
             });
+
 
             // Display the HTML content in a container
             $('#output').html(htmlContent);
