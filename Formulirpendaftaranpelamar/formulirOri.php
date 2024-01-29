@@ -45,9 +45,8 @@ $jabatan = $_GET['nama'];
       </div>
 
 
-      <form action="api/api_pelamar.php" method="post" enctype="multipart/form-data"
-        onsubmit="return validateFileSize()">
-        <div class="card m-3  md">
+      <form action="" method="post" enctype="multipart/form-data">
+        <div class=" card m-3 md">
           <div class="card-body border-top border-5 border-warning">
             <h5 class="card-title text-center"></h5>
             <form>
@@ -59,8 +58,7 @@ $jabatan = $_GET['nama'];
                   <p>Foto KTP
                   </p>
                 </label>
-                <input name="scan_ktp" accept=".jpeg, .jpg, .png" class="form-control" type="file" id="scan-ktp"
-                  onchange="validateFile(this, 200)">
+                <input name="scan_ktp" accept=".jpeg, .jpg, .png" class="form-control" type="file" id="scan-ktp">
               </div>
               <div class="mb-3">
                 <label for="nama" class="form-label">Nama lengkap sesuai KTP</label>
@@ -70,29 +68,29 @@ $jabatan = $_GET['nama'];
 
               <div class="mb-3">
                 <label for="nik" class="form-label">NIK KTP</label>
-                <input name="nik" minlength="16" required type="text" class="form-control" id="nik"
+                <input name="nik_ktp" minlength="16" required type="text" class="form-control" id="nik"
                   aria-describedby="emailHelp">
 
               </div>
 
               <div class="mb-3">
                 <label for="tempatlahir" class="form-label">Tempat lahir</label>
-                <input name="tempat_lahir" required type="text" class="form-control" id="tempatlahir"
+                <input name="tempatlahir" required type="text" class="form-control" id="tempatlahir"
                   aria-describedby="emailHelp">
 
               </div>
               <div class="mb-3">
                 <label for="tanggallahir" class="form-label">Tanggal lahir</label>
-                <input name="tanggal_lahir" required type="date" class="form-control" id="tanggallahir">
+                <input name="tanggallahir" required type="date" class="form-control" id="tanggallahir">
 
               </div>
               <div class="berat_badan">
                 <label for="berat_badan">Berat Badan</label>
-                <input type="number" name="berat_badan" class="form-control" id="berat_bedan">
+                <input type="number" class="form-control" id="berat_bedan">
                 <label for="tinggi_badan">Tinggi Badan</label>
-                <input type="number" name="tinggi_badan" class="form-control" id="tinggi_badan">
+                <input type="number" class="form-control" id="tinggi_badan">
                 <label for="agama">Agama</label>
-                <input type="text" class="form-control" name="agama" id="agama">
+                <input type="text" class="form-control" id="agama">
               </div>
               <!-- <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Usia</label>
@@ -101,13 +99,13 @@ $jabatan = $_GET['nama'];
                   </div><div class="container mb-3"></div> -->
               <p> Jenis kelamin</p>
               <div class="form-check">
-                <input value="laki laki" name="jenis_kelamin" required class="form-check-input" type="radio" id="jk">
+                <input value="laki laki" name="jeniskelamin" required class="form-check-input" type="radio" id="jk">
                 <label class="form-check-label" for="jk">
                   laki laki
                 </label>
               </div>
               <div class="form-check">
-                <input value="Perempuan" class="form-check-input" type="radio" name="jenis_kelamin" id="jk">
+                <input value="Perempuan" class="form-check-input" type="radio" name="jeniskelamin" id="jk">
                 <label class="form-check-label mb-3" for="permprn">
                   Perempuan
                 </label>
@@ -147,7 +145,7 @@ $jabatan = $_GET['nama'];
                   aria-describedby="emailHelp">
               </div>
               <div class="mb-2"><label>Status pernikahan</label>
-                <select class="form-control" name="status_pernikahan" id="sts-prnkhn">
+                <select class="form-control" id="sts-prnkhn">
                   <option value="">Pilih Status pernikahan</option>
                   <option value="Belum menikah">Belum menikah</option>
                   <option value="Menikah">Menikah</option>
@@ -160,8 +158,7 @@ $jabatan = $_GET['nama'];
 
               <div class="mb-3">
                 <label for="alamat_ktp" class="form-label">Alamat sesuai KTP</label>
-                <div class="mb-3" name="alamat_ktp" id="emailHelp" class="form-text">Hanya pelamar yang menuliskan
-                  alamat lengkap sesuai
+                <div class="mb-3" id="emailHelp" class="form-text">Hanya pelamar yang menuliskan alamat lengkap sesuai
                   KTP, yang akan kami proses lebih lanjut. <br>
                   Contoh : Jl. Singojoyo RT/RW 04/02 Ds. Tembelang Kec. Tembelang Kab. Jombang </div>
                 <input name="alamat" required type="text" class="form-control mb-3" id="alamat_ktp"
@@ -170,7 +167,7 @@ $jabatan = $_GET['nama'];
                   <label for="alamat_domisili" class="form-label">Alamat domisili saat ini</label>
                   <div class="mb-3" id="emailHelp" class="form-text">Jika alamat domisili sama dengan KTP, tidak perlu
                     ditulis ulang melainkan isi dengan tanda - </div>
-                  <input name="alamat_domisili" required type="text" class="form-control mb-3" id="alamat_domisili"
+                  <input nama="domisili" required type="text" class="form-control mb-3" id="alamat_domisili"
                     aria-describedby="emailHelp">
                   <div class="mb-3">
                     <label for="no_telp" class="form-label">Nomor Telepon</label>
@@ -202,7 +199,8 @@ $jabatan = $_GET['nama'];
                         Apakah anda memiliki mata minus / silinder
 
                         <div class="form-check">
-                          <input value="YES" class="form-check-input" type="radio" id="ms/y" onclick="text(0)">
+                          <input value="YES" name="minus_silinder" class="form-check-input" type="radio" id="ms/y"
+                            onclick="text(0)">
                           <label class="form-check-label" for="ms/y">
                             Yes
                           </label>
@@ -215,11 +213,11 @@ $jabatan = $_GET['nama'];
                           </label>
                           <div class="mb-3 mt-2" id="hmm">
                             <label for="minus_silinder" class="form-label">minus berapa?</label>
-                            <input name="ketebalan_minus" id="minus_silinder" required type="text" class="form-control"
-                              aria-describedby="emailHelp" value="-">
+                            <input name="minus_silinder" id="minus_silinder" required type="text" class="form-control"
+                              aria-describedby="emailHelp">
                             <label for="slndr_berapa" class="form-label">silinder berapa?</label>
-                            <input name="ketebalan_silinder" value="-" required type="text" id="slndr_berapa"
-                              class="form-control" aria-describedby="emailHelp">
+                            <input name="minus_silinder" required type="text" id="slndr_berapa" class="form-control"
+                              aria-describedby="emailHelp">
                           </div>
                         </div>
                       </div>
@@ -242,11 +240,11 @@ $jabatan = $_GET['nama'];
                         </label>
                         <div class="mb-3 mt-2" id="penyakit">
                           <label for="penyakit-apa" class="form-label">Penyakit apa yang and miliki?</label>
-                          <input value="-" name="nama_penyakit" id="penyakit-apa" required type="text"
-                            class="form-control" aria-describedby="emailHelp">
+                          <input name="penyakit" id="penyakit-apa" required type="text" class="form-control"
+                            aria-describedby="emailHelp">
                           <label for="penyakit_kapan" class="form-label">Kapan?</label>
-                          <input value="-" name="lama_penyakit" required type="text" class="form-control"
-                            id="penyakit_kapan" aria-describedby="emailHelp">
+                          <input name="penyakit_kapan" required type="text" class="form-control" id="penyakit_kapan"
+                            aria-describedby="emailHelp">
                         </div>
                       </div>
 
@@ -269,11 +267,11 @@ $jabatan = $_GET['nama'];
                         </label>
                         <div class="mb-3 mt-2" id="relasi">
                           <label for="relasi-nama" class="form-label">Nama</label>
-                          <input value="-" name="nama_teman" required type="text" class="form-control"
-                            aria-describedby="emailHelp" id="relasi-nama">
+                          <input name="relasi" required type="text" class="form-control" aria-describedby="emailHelp"
+                            id="relasi-nama">
                           <label for="relasi-jabatan" class="form-label">Jabatannya</label>
-                          <input value="-" name="posisi_teman" required id="relasi-jabatan" type="text"
-                            class="form-control" aria-describedby="emailHelp">
+                          <input name="relasi" required id="relasi-jabatan" type="text" class="form-control"
+                            aria-describedby="emailHelp">
                         </div>
                       </div>
                     </div>
@@ -286,33 +284,33 @@ $jabatan = $_GET['nama'];
                         aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3"><label for="eksp_salary">Ekspektasi Salary</label>
-                      <input type="number" class="form-control" name="ekspektasi_salary" id="eksp_salary">
+                      <input type="number" class="form-control" name="" id="eksp_salary">
                     </div>
                     <div class="mb-3">
                       <label for="pnjlsan" class="form-label">
                         <p class="mt-4">Kewarganegaraan</p>
                       </label>
-                      <input name="kewarganegaraan" required type="text" class="form-control mb-3" id="warga"
+                      <input name="penjelasan" required type="text" class="form-control mb-3" id="warga"
                         aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3"><label for="provinsi">Provinsi</label>
-                      <input type="text" class="form-control" name="provinsi" id="provinsi">
+                      <input type="text" class="form-control" name="" id="provinsi">
                     </div>
                     <div class="mb-3">
                       <label for="kabupaten" class="form-label">
                         Kabupaten
                       </label>
-                      <input name="kabupaten" required type="text" class="form-control mb-3" id="kabupaten"
+                      <input name="penjelasan" required type="text" class="form-control mb-3" id="kabupaten"
                         aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3"><label for="kecamatan">Kecamatan</label>
-                      <input type="text" class="form-control" name="kecamatan" id="kecamatan">
+                      <input type="text" class="form-control" name="" id="kecamatan">
                     </div>
                     <div class="mb-3"><label for="rt">RT</label>
-                      <input type="number" class="form-control" name="rt" id="rt">
+                      <input type="number" class="form-control" name="" id="rt">
                     </div>
                     <div class="mb-3"><label for="rw">RW</label>
-                      <input type="number" class="form-control" name="rw" id="rw">
+                      <input type="number" class="form-control" name="" id="rw">
                     </div>
 
 
@@ -328,11 +326,11 @@ $jabatan = $_GET['nama'];
                             </li> -->
                           <li>KARTU KELUARGA <br>
                             <input type="file" class="form-control" accept="application/pdf" name="kartu_keluarga"
-                              id="kk" onchange="validateFile(this, 200)">
+                              id="kk">
                           </li>
                           <li>Pass Foto <br>
                             <input type="file" class="form-control" accept=".jpeg, .jpg, .png" name="pass_foto"
-                              id="pass_foto" onchange="validateFile(this, 200)">
+                              id="pass_foto">
                           </li>
                           <li> LAMARAN LENGKAP (Surat Lamaran, CV/Daftar Riwayat Hidup, Ijazah, SKHU/Transkip Nilai,
                             Keterangan Vaksin Terakhir, Surat Sehat Asli) <br>
@@ -341,14 +339,12 @@ $jabatan = $_GET['nama'];
                             -Berkas lamaran yang diupload harus jelas dan bisa terbaca untuk dapat kami proses lebih
                             lanjut.
                       </label></li>
-                      <input name="fileberkas" accept="application/pdf" onchange="validateFile(this, 200)"
-                        class="form-control" type="file" id="formFile">
+                      <input name="fileberkas" accept="application/pdf" class="form-control" type="file" id="formFile">
                       </ol>
                     </div>
-                    <input type="hidden" id="sembunyi" name="jabatan_id" value="">
-                    <input type="hidden" id="o" name="status" value="PENDING">
 
-                    <button class="btn btn-warning text-light" onsubmit="submitForm()">Submit</button>
+
+                    <button type="button" class="btn btn-warning text-light" onclick="submitForm()">Submit</button>
 
             </form>
           </div>
@@ -371,35 +367,66 @@ $jabatan = $_GET['nama'];
     }
   </style>
   <!-- Include SweetAlert library -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+  <!-- Your script with AJAX call and Swal usage -->
 
   <script>
-    function validateFileSize() {
-      // You can add more file input validations here if needed
-      return true; // Return true to submit the form, or false to prevent submission
+    var selectedPosisi = document.getElementById("posisi").value;
+
+    if (selectedPosisi === 'OPERATOR PRODUKSI') {
+      document.getElementById("matasilinder").classList.remove("d-none");
     }
 
-    function validateFile(input, maxSizeKB) {
-      if (input.files && input.files[0]) {
-        const fileSize = input.files[0].size; // Size in bytes
-        const maxSizeBytes = maxSizeKB * 1024;
+    $.ajax({
+      url: 'api/api_job_posting.php',
+      method: 'GET',
+      data: { id: "<?= $jabatan ?>" },
+      dataType: 'json',
+      success: function (data) {
+        // console.log(data);
+        localStorage.clear();
+        localStorage.setItem('key', JSON.stringify(data.data.id));
+        // id = data.data.id;
 
-        if (fileSize > maxSizeBytes) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'File size exceeds the maximum allowed size (200 KB). Please choose a smaller file.'
-          });
-          input.value = ''; // Clear the file input
-          return false;
-        }
+        // Now you can work with the 'id' or other data here
+        // console.log(id);
+        // localStorage.setItem('key', data.data.id)
+        // Call a function or perform other actions that depend on the data
+        // processData(data);
+      },
+      error: function (xhr, status, error) {
+        console.error('Error:', status, error);
+        // $('#output').html('<p>Error loading data</p>');
       }
+    });
 
-      return true; // File size is within the limit
-    }
   </script>
-
   <script>
+    // The 'id' will still be 'undefined' here because the AJAX call is asynchronous
+
+    // function processData(data) {
+    //   // Process the data or perform actions here
+    //   console.log("Processed data:", data);
+    // }
+    document.getElementById("posisi").addEventListener('change', function () {
+      // Wrap your code in an event listener to ensure it runs after the DOM is fully loaded
+
+      var selectedPosisi = document.getElementById("posisi").value;
+      var tr = document.getElementById("matasilinder");
+
+      if (selectedPosisi === "Operator produksi") {
+        tr.classList.remove("d-none");
+      } else {
+        tr.classList.add("d-none");
+      }
+    });
+
+    $(document).ready(function () {
+      $('.select2').select2();
+    });
+
+
     function text(x) {
       if (x == 0) document.getElementById("hmm").style.display = "block";
       else document.getElementById("hmm").style.display = "none";
@@ -431,70 +458,219 @@ $jabatan = $_GET['nama'];
       else
         document.getElementById("relasi").style.display = "none";
     }
-    var id = localStorage.getItem('key');
-    var rotiBakar = document.getElementById('sembunyi');
-    rotiBakar.value = id
-    var selectedPosisi = document.getElementById("posisi").value;
 
-    if (selectedPosisi === 'OPERATOR PRODUKSI') {
-      document.getElementById("matasilinder").classList.remove("d-none");
-    }
 
-    $.ajax({
-      url: 'api/api_job_posting.php',
-      method: 'GET',
-      data: { id: "<?= $jabatan ?>" },
-      dataType: 'json',
-      success: function (data) {
-        // console.log(data);
-        localStorage.clear();
-        localStorage.setItem('key', JSON.stringify(data.data.id));
-        // id = data.data.id;
-
-        // Now you can work with the 'id' or other data here
-        // console.log(id);
-        // localStorage.setItem('key', data.data.id)
-        // Call a function or perform other actions that depend on the data
-        // processData(data);
-      },
-      error: function (xhr, status, error) {
-        console.error('Error:', status, error);
-        // $('#output').html('<p>Error loading data</p>');
-      }
-    });
-
-    $('#nik').change(function () {
-      var selectedOption = $(this).val();
+    function submitForm() {
+      // Perform the AJAX request
       var id = localStorage.getItem('key');
-      // AJAX request
+      console.log(id);
+      var scan_ktp = $("#scan-ktp")[0].files[0];
+      var nama = $('#nama').val();
+      var nik = $('#nik').val();
+      var tempatlahir = $('#tempatlahir').val();
+      var tanggallahir = $('#tanggallahir').val();
+      var jk = $('#jk').val();
+      var berat_bedan = $('#berat_bedan').val();
+      var tinggi_badan = $('#tinggi_badan').val();
+      var agama = $('#agama').val();
+      var email = $('#email').val();
+      var pendidikan = $('#pnd').val();
+      var nma_sklh = $('#nma_sklh').val();
+      var jurusan_sekolah = $('#jrsn').val();
+      var status_pernikahan = $('#sts-prnkhn').val();
+      var alamat_ktp = $('#alamat_ktp').val();
+      var alamat_domisili = $('#alamat_domisili').val();
+      var no_telp = $('#no_telp').val()
+      var posisi = $('#posisi').val()
+      var pnglm_bkrj = $('#pnglm_bkrj').val()
+      var minus_silinder = $('#minus_silinder').val()
+      var penyakitApa = $('#penyakit-apa').val()
+      var penyakit_kapan = $('#penyakit_kapan').val()
+      var seleksi = $('#kapan_seleksi').val();
+      var slndr_berapa = $('#slndr_berapa').val();
+      var relasi_nama = $('#relasi-nama').val();
+      var relasi_jabatan = $('#relasi-jabatan').val();
+      var pnjlsan = $('#pnjlsan').val();
+      // var ktp_aseli=$('#ktp_aseli').val();
+      var kk = $("#kk")[0].files[0];
+      var pas_photo = $("#pass_foto")[0].files[0];
+      var berkas = $("#formFile")[0].files[0];
+      var kwrgn = $("#warga").val();
+      var rt = $("#rt").val();
+      var rw = $("#rw").val();
+      var kecamatan = $("#kecamatan").val();
+      var kabupaten = $("#kabupaten").val();
+      var provinsi = $("#provinsi").val();
+      //var rw = $("#rw");
+
+      var dobValue = new Date();
+
+      // Hitung usia berdasarkan tanggal lahir
+      var today = new Date(tanggallahir);
+      var age = dobValue.getFullYear() - today.getFullYear();
+
+      // Atur tanggal lahir ke tanggal saat ini untuk memeriksa hari ulang tahun
+      today.getFullYear(dobValue.setFullYear());
+
+      // Jika tanggal lahir pada atau setelah hari ini, kurangi satu tahun dari usia
+      if (today < dobValue) {
+        age--;
+      }
+
+      var eksp_salary = $('#eksp_salary').val();
+      //v
+      var jabatan_id = id;
+      // console.log(id);
+      if (
+        scan_ktp == null ||
+        nama == "" ||
+        nik == "" ||
+        tempatlahir == "" ||
+        tempatlahir == "" ||
+        //== "" ||
+        tinggi_badan == "" ||
+        berat_bedan == "" ||
+        jk == "" ||
+        agama == "" ||
+        email == "" ||
+        nma_sklh == "" ||
+        jurusan_sekolah == "" ||
+        alamat_ktp == "" ||
+        //kewarganegaraan == "" ||
+        //provinsi == "" ||
+        // kabupaten == "" ||
+        // kecamatan == "" ||
+        //rt == "" ||
+        //rw == "" ||
+        alamat_domisili == "" ||
+        no_telp == "" ||
+        //jabatan_id == "" ||
+        pnglm_bkrj == "" ||
+        eksp_salary == "" ||
+        kk == "" ||
+        pas_photo == "" ||
+        berkas == ""
+      ) {
+        Swal.fire({ title: "Gagal", text: "Isian Anda Ada Yang Masih Kosong", icon: "error" });
+        return;
+      }
+
+      //
+      if (email.indexOf('@') === -1) {
+        Swal.fire({
+          title: 'Error!',
+          text: 'Email Anda tidak valid',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+        return;
+      }
+
+      if (nik.length !== 16) {
+        Swal.fire({
+          title: 'Eror!',
+          text: 'NIK Anda tidak valid',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        })
+        return;
+      }
+
+      // Create a FormData object
+      var formData = new FormData();
+      formData.append('scan_ktp', scan_ktp);
+      formData.append('nama', nama);
+      formData.append('nik', nik);
+      formData.append('tempat_lahir', tempatlahir);
+      formData.append('tanggal_lahir', tanggallahir);
+      formData.append('usia', age); // Use 'age' instead of 'umur'
+      formData.append('tinggi_badan', tinggi_badan);
+      formData.append('berat_badan', berat_bedan);
+      formData.append('jenis_kelamin', jk);
+      formData.append('agama', agama);
+      formData.append('email', email);
+      formData.append('pendidikan_terakhir', pendidikan);
+      formData.append('nama_pendidikan', nma_sklh);
+      formData.append('status_pernikahan', status_pernikahan)
+      formData.append('alamat_ktp', alamat_ktp);
+      formData.append('kewarganegaraan', kwrgn);
+      formData.append('provinsi', provinsi);
+      formData.append('kabupaten', kabupaten);
+      formData.append('kecamatan', kecamatan);
+      formData.append('rt', rt);
+      formData.append('rw', rw);
+      formData.append('alamat_domisili', alamat_domisili);
+      formData.append('nomor_telp', no_telp);
+      formData.append('jabatan_id', jabatan_id);
+      formData.append('status_pengalaman', pnglm_bkrj);
+      formData.append('ekspektasi_salary', eksp_salary);
+      formData.append('ketebalan_minus', minus_silinder);
+      formData.append('ketebalan_silinder', slndr_berapa);
+      formData.append('nama_penyakit', penyakitApa);
+      formData.append('lama_penyakit', penyakit_kapan);
+      formData.append('nama_teman', relasi_nama);
+      formData.append('posisi_teman', relasi_jabatan);
+      formData.append('kk', kk);
+      formData.append('pas_photo', pas_photo);
+      formData.append('berkas', berkas);
+      // formData.append('status', 'Pending');
+      //cek
       $.ajax({
-        url: 'api/api_cek_pelamar.php', // URL to your backend script
-        type: 'GET', // HTTP method
+        url: 'api/api_cek_pelamar.php',
+        method: 'GET',
         data: {
-          nik: selectedOption,
-          jabatan_id: id,
-        }, // Data to be sent to the server
+          nik: nik,
+          jabatan_id: jabatan_id
+        },
         success: function (response) {
+          // Server mengembalikan respons
           if (response === 'success') {
-            // Alert or show error message here
+            //alert('Tdak boleh stoppppp');
             Swal.fire({
               title: 'Error!',
               text: 'Pelamar dengan NIK dan Posisi tersebut sudah ada.',
               icon: 'error'
             });
-            selectedOption = ''; // Reset selectedOption if needed
+            return;
           } else {
-            // Handle other responses if needed
+
+            // Assuming formData is defined earlier in your code
+            $.ajax({
+              method: "POST",
+              url: "api/api_pelamar.php",
+              data: formData,
+              processData: false,
+              contentType: false,
+              cache: false,
+              enctype: 'multipart/form-data',
+              success: function (postResponse) {
+                console.log(postResponse);
+                Swal.fire({
+                  title: 'Success!',
+                  text: 'Data berhasil Disimpan',
+                  icon: 'success',
+                  confirmButtonText: 'OK'
+                });
+              },
+              error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+                Swal.fire({
+                  title: 'Error!',
+                  text: xhr.responseText,
+                  icon: 'error',
+                  confirmButtonText: 'OK'
+                });
+              }
+            });
           }
-        },
-        error: function (xhr, status, error) {
-          console.error(error); // Log any errors to the console
         }
       });
-    });
+
+    }
+
+
 
   </script>
-
 
 </body>
 

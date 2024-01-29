@@ -281,10 +281,8 @@
     document.getElementById('searchForm').addEventListener('submit', function (event) {
       // Prevent the default form submission
       event.preventDefault();
-
       // Get the selected option value
       var selectedValue = document.getElementById('sc').value;
-
       // If a value is selected, set the form action to the selected value
       if (selectedValue) {
         this.action = selectedValue;
@@ -293,39 +291,7 @@
         alert('Please select a category');
       }
     });
-
     $(document).ready(function () {
-      //   var jobs = [`ADMIN DOCUMENT CONTROL SPECIALIST INTERNSHIP`, `HSE SPECIALIST (SUPERVISOR LEVEL)`, `SALES DAN MARKETING MANAGER (MARKET CHINA)`, `JURU MASAK`];
-      //   var htmlContent = '';
-      //   var i = 2;
-
-      //   // Iterate through the array and build HTML content
-      //   jobs.forEach(job => {
-      //     // console.log(jobs.indexOf(job)); // Log the index of the current job
-
-      //     htmlContent += `
-      //     <a class="job_card" href="infor.php?nama=${i++}">
-      //         <div class="job">
-      //             <div class="text">
-      //                 <span class="category">${job}</span>
-      //                 <h2>${job}</h2>
-      //                 <span>${job}</span>
-      //             </div>
-      //         </div>
-      //         <ion-icon name="arrow-forward-outline"></ion-icon>
-      //     </a>
-      // `;
-      //   });
-      //   // job.forEach(function (job) {
-
-
-      //   // });
-
-      //   // Display the HTML content in a container
-      //   $('#output1').html(htmlContent);
-      // Button click event
-      // localStorage.clear();
-      // AJAX request using the GET method
       $(document).ready(function () {
         // Button click event
         localStorage.clear();
@@ -339,8 +305,6 @@
             console.log(data);
             var jobData = data.jobPosting;
             var htmlContent = '';
-
-
             // Iterate through the array and build HTML content
             jobData.forEach(function (job) {
               // Check if fresh_graduate is 'YA'
@@ -374,8 +338,6 @@
     `;
               }
             });
-
-
             // Display the HTML content in a container
             $('#output').html(htmlContent);
           },
@@ -385,34 +347,8 @@
           }
         });
       });
-
-
-
-
     });
 
-    // var card = document.getElementById('link'); var myArray = ['Operator Produksi', 'Tim Sanitasi', 'IT Intern'];
-
-    // myArray.forEach(element => {
-    //   var jobCard = document.createElement('div');
-    //   jobCard.className = 'job_card';
-    //   jobCard.onclick = function () {
-    //     location.href = 'infor.php?nama=' + element;
-    //   };
-
-    //   jobCard.innerHTML = `
-    //         <div class="job">
-    //             <div class="text">
-    //                 <span class="category">${element}</span>
-    //                 <h2>${element}</h2>
-    //                 <span>${element}</span>
-    //             </div>
-    //         </div>
-    //         <ion-icon name="arrow-forward-outline"></ion-icon>
-    //     `;
-
-    //   card.appendChild(jobCard);
-    // });
   </script>
 
 </body>
