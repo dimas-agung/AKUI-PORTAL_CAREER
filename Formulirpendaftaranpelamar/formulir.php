@@ -60,7 +60,7 @@ $jabatan = $_GET['nama'];
                   </p>
                 </label>
                 <input name="scan_ktp" accept=".jpeg, .jpg, .png" class="form-control" type="file" id="scan-ktp"
-                  onchange="validateFile(this, 200)">
+                  onchange="validateFile(this, 5000)">
               </div>
               <div class="mb-3">
                 <label for="nama" class="form-label">Nama lengkap sesuai KTP</label>
@@ -328,11 +328,11 @@ $jabatan = $_GET['nama'];
                             </li> -->
                           <li>KARTU KELUARGA <br>
                             <input type="file" class="form-control" accept="application/pdf" name="kartu_keluarga"
-                              id="kk" onchange="validateFile(this, 200)">
+                              id="kk" onchange="validateFile(this, 5000)">
                           </li>
                           <li>Pass Foto <br>
                             <input type="file" class="form-control" accept=".jpeg, .jpg, .png" name="pass_foto"
-                              id="pass_foto" onchange="validateFile(this, 200)">
+                              id="pass_foto" onchange="validateFile(this, 5000)">
                           </li>
                           <li> LAMARAN LENGKAP (Surat Lamaran, CV/Daftar Riwayat Hidup, Ijazah, SKHU/Transkip Nilai,
                             Keterangan Vaksin Terakhir, Surat Sehat Asli) <br>
@@ -341,7 +341,7 @@ $jabatan = $_GET['nama'];
                             -Berkas lamaran yang diupload harus jelas dan bisa terbaca untuk dapat kami proses lebih
                             lanjut.
                       </label></li>
-                      <input name="fileberkas" accept="application/pdf" onchange="validateFile(this, 200)"
+                      <input name="fileberkas" accept="application/pdf" onchange="validateFile(this, 10000)"
                         class="form-control" type="file" id="formFile">
                       </ol>
                     </div>
@@ -388,7 +388,7 @@ $jabatan = $_GET['nama'];
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'File size exceeds the maximum allowed size (200 KB). Please choose a smaller file.'
+            text: `File size exceeds the maximum allowed size (${maxSizeKB} KB). Please choose a smaller file.`
           });
           input.value = ''; // Clear the file input
           return false;
