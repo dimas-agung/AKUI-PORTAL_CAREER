@@ -462,35 +462,42 @@ $jabatan = $_GET['nama'];
         // $('#output').html('<p>Error loading data</p>');
       }
     });
-
-    $('#nik').change(function () {
-      var selectedOption = $(this).val();
-      var id = localStorage.getItem('key');
-      // AJAX request
-      $.ajax({
-        url: 'api/api_cek_pelamar.php', // URL to your backend script
-        type: 'GET', // HTTP method
-        data: {
-          nik: selectedOption,
-          jabatan_id: id,
-        }, // Data to be sent to the server
-        success: function (response) {
-          if (response === 'success') {
-            // Alert or show error message here
-            Swal.fire({
-              title: 'Error!',
-              text: 'Pelamar dengan NIK dan Posisi tersebut sudah ada.',
-              icon: 'error'
-            });
-            selectedOption = ''; // Reset selectedOption if needed
-          } else {
-            // Handle other responses if needed
+    $('#nik').on('change', function () {
+      if ($(this).val().length === 16) {
+        var selectedOption = $(this).val();
+        var id = localStorage.getItem('key');
+        // AJAX request
+        $.ajax({
+          url: 'api/api_cek_pelamar.php', // URL to your backend script
+          type: 'GET', // HTTP method
+          data: {
+            nik: selectedOption,
+            jabatan_id: id,
+          }, // Data to be sent to the server
+          success: function (response) {
+            if (response === 'success') {
+              // Alert or show error message here
+              Swal.fire({
+                title: 'Error!',
+                text: 'Pelamar dengan NIK dan Posisi tersebut sudah ada.',
+                icon: 'error'
+              });
+              $('#nik').val('');
+              // Reset selectedOption if needed
+            }
+          },
+          error: function (xhr, status, error) {
+            console.error(error); // Log any errors to the console
           }
-        },
-        error: function (xhr, status, error) {
-          console.error(error); // Log any errors to the console
-        }
-      });
+        });
+      } else {
+        Swal.fire({
+          title: 'Error!',
+          text: 'NIK Harus 16 digit',
+          icon: 'error'
+        });
+        $('#nik').val('');
+      }
     });
 
   </script>
