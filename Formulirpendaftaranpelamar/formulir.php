@@ -21,6 +21,12 @@ $jabatan = $_GET['nama'];
     li {
       margin-bottom: 20px;
     }
+
+    .label::after {
+      content: "*";
+      color: red;
+      margin-left: 5px;
+    }
   </style>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <!-- Include Select2 CSS -->
@@ -47,59 +53,59 @@ $jabatan = $_GET['nama'];
 
       <form action="api/api_pelamar.php" method="post" enctype="multipart/form-data"
         onsubmit="return validateFileSize()">
-        <div class="card m-3  md">
+        <div class="card m-3 md">
           <div class="card-body border-top border-5 border-warning">
             <h5 class="card-title text-center"></h5>
             <form>
 
               <div class="mb-3">
-                <label class="form-label" for="posisi">Posisi yang dilamar</label>
-                <input type="text" class="form-control" id="posisi" value="<?= $jabatan ?>" readonly><br>
-                <label for="scan-ktp" class="form-label fs">
-                  <p>Foto KTP
-                  </p>
+                <label for="posisi">Posisi yang dilamar</label>
+                <input type="text" class="form-control" id="posisi" value="<?= $jabatan ?>" readonly required><br>
+                <label for="scan-ktp" class="form-label fs label">
+                  Foto KTP
+
                 </label>
-                <input name="scan_ktp" accept=".jpeg, .jpg, .png" class="form-control" type="file" id="scan-ktp"
-                  onchange="validateFile(this, 5000)">
+                <input required name="scan_ktp" accept=".jpeg, .jpg, .png" class="form-control" type="file"
+                  id="scan-ktp" onchange="validateFile(this, 5000)">
               </div>
               <div class="mb-3">
-                <label for="nama" class="form-label">Nama lengkap sesuai KTP</label>
+                <label for="nama" class="form-label label">Nama lengkap sesuai KTP</label>
                 <input name="nama" required type="text" class="form-control" id="nama" aria-describedby="emailHelp">
 
               </div>
 
               <div class="mb-3">
-                <label for="nik" class="form-label">NIK KTP</label>
+                <label for="nik" class="form-label label">NIK KTP</label>
                 <input name="nik" minlength="16" required type="text" class="form-control" id="nik"
                   aria-describedby="emailHelp">
 
               </div>
 
               <div class="mb-3">
-                <label for="tempatlahir" class="form-label">Tempat lahir</label>
+                <label for="tempatlahir" class="form-label label">Tempat lahir</label>
                 <input name="tempat_lahir" required type="text" class="form-control" id="tempatlahir"
                   aria-describedby="emailHelp">
 
               </div>
               <div class="mb-3">
-                <label for="tanggallahir" class="form-label">Tanggal lahir</label>
+                <label for="tanggallahir" class="form-label label">Tanggal lahir</label>
                 <input name="tanggal_lahir" required type="date" class="form-control" id="tanggallahir">
 
               </div>
               <div class="berat_badan">
-                <label for="berat_badan">Berat Badan</label>
-                <input type="number" name="berat_badan" class="form-control" id="berat_bedan">
-                <label for="tinggi_badan">Tinggi Badan</label>
-                <input type="number" name="tinggi_badan" class="form-control" id="tinggi_badan">
-                <label for="agama">Agama</label>
-                <input type="text" class="form-control" name="agama" id="agama">
+                <label class="label" for="berat_badan">Berat Badan</label>
+                <input type="number" required name="berat_badan" class="form-control" id="berat_bedan">
+                <label class="label" for="tinggi_badan">Tinggi Badan</label>
+                <input type="number" required name="tinggi_badan" class="form-control" id="tinggi_badan">
+                <label class="label" for="agama">Agama</label>
+                <input type="text" required class="form-control" name="agama" id="agama">
               </div>
               <!-- <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Usia</label>
+                    <label for="exampleInputPassword1" class="form-label label">Usia</label>
                     <div class="mb-3" id="emailHelp" class="form-text">Contoh pengisian: 25 Th</div>
                     <input name = "usia" required type="text" class="form-control" id="exampleInputPassword1">
                   </div><div class="container mb-3"></div> -->
-              <p> Jenis kelamin</p>
+              <label class="label"> Jenis kelamin</label>
               <div class="form-check">
                 <input value="laki laki" name="jenis_kelamin" required class="form-check-input" type="radio" id="jk">
                 <label class="form-check-label" for="jk">
@@ -116,12 +122,12 @@ $jabatan = $_GET['nama'];
 
               <div class="mb-3 mt-2">
 
-                <label for="email" class="form-label">Email Aktif</label>
+                <label for="email" class="form-label label">Email Aktif</label>
                 <input name="email" required type="email" class="form-control" id="email" aria-describedby="emailHelp">
               </div>
 
               <div class="mb-3 p-2">
-                <p>Pendidikan terakhir</p>
+                <label class="label">Pendidikan terakhir</label>
                 <select class="form-control select2" name="pendidikan" style="width:100%;" id="pnd">
                   <option value="smp">SMP Sederajat</option>
                   <option value="SMA">SMA</option>
@@ -137,16 +143,16 @@ $jabatan = $_GET['nama'];
 
 
               <div class="mb-3">
-                <label for="nma_sklh" class="form-label">Tuliskan Nama Sekolah/Universitas Terakhir Anda</label>
+                <label for="nma_sklh" class="form-label label">Tuliskan Nama Sekolah/Universitas Terakhir Anda</label>
                 <div class="mb-3" id="y" class="form-text">Contoh: SMA Negeri 1 Jombang atau Universitas Muhammadiyah
                   Malang</div>
                 <input name="nama_sekolah" required type="text" class="form-control mt-2" id="nma_sklh"
                   aria-describedby="emailHelp">
-                <label for="jrsn" class="mt-4">Jurusan Sekolah</label>
+                <label for="jrsn" class="mt-4 label">Jurusan Sekolah</label>
                 <input name="jurusan_sekolah" required type="text" class="form-control" id="jrsn"
                   aria-describedby="emailHelp">
               </div>
-              <div class="mb-2"><label>Status pernikahan</label>
+              <div class="mb-2"><label class="label">Status pernikahan</label>
                 <select class="form-control" name="status_pernikahan" id="sts-prnkhn">
                   <option value="">Pilih Status pernikahan</option>
                   <option value="Belum menikah">Belum menikah</option>
@@ -159,7 +165,7 @@ $jabatan = $_GET['nama'];
               </div>
 
               <div class="mb-3">
-                <label for="alamat_ktp" class="form-label">Alamat sesuai KTP</label>
+                <label for="alamat_ktp" class="form-label label">Alamat sesuai KTP</label>
                 <div class="mb-3" name="alamat_ktp" id="emailHelp" class="form-text">Hanya pelamar yang menuliskan
                   alamat lengkap sesuai
                   KTP, yang akan kami proses lebih lanjut. <br>
@@ -167,13 +173,13 @@ $jabatan = $_GET['nama'];
                 <input name="alamat" required type="text" class="form-control mb-3" id="alamat_ktp"
                   aria-describedby="emailHelp">
                 <div class="mb-3">
-                  <label for="alamat_domisili" class="form-label">Alamat domisili saat ini</label>
+                  <label for="alamat_domisili" class="form-label label">Alamat domisili saat ini</label>
                   <div class="mb-3" id="emailHelp" class="form-text">Jika alamat domisili sama dengan KTP, tidak perlu
                     ditulis ulang melainkan isi dengan tanda - </div>
                   <input name="alamat_domisili" required type="text" class="form-control mb-3" id="alamat_domisili"
                     aria-describedby="emailHelp">
                   <div class="mb-3">
-                    <label for="no_telp" class="form-label">Nomor Telepon</label>
+                    <label for="no_telp" class="form-label label">Nomor Telepon</label>
                     <div class="mb-3" id="emailHelp" class="form-text">Yang terhubung dengn whatsapp <br> Awali dengan
                       angka 0 dan tanpa tanda -
                     </div><input name="nomor_telpon" required type="number" class="form-control mb-3" id="no_telp"
@@ -190,8 +196,8 @@ $jabatan = $_GET['nama'];
                       </select>
                     </div> -->
                     <div class="mb-3">
-                      <label for="pnglm_bkrj" class="form-label">
-                        <p class="mt-4">Pengalaman Bekerja</p>
+                      <label for="pnglm_bkrj" class="form-label label">
+                        Pengalaman Bekerja
                       </label>
                       <div class="mb-3" id="emailHelp" class="form-text">Contoh: PT Akui Bird Nest Indonesia sebagai
                         Operator Produksi (1 tahun 2 bulan) </div>
@@ -214,10 +220,10 @@ $jabatan = $_GET['nama'];
                             No
                           </label>
                           <div class="mb-3 mt-2" id="hmm">
-                            <label for="minus_silinder" class="form-label">minus berapa?</label>
+                            <label for="minus_silinder" class="form-label ">minus berapa?</label>
                             <input name="ketebalan_minus" id="minus_silinder" required type="text" class="form-control"
                               aria-describedby="emailHelp" value="-">
-                            <label for="slndr_berapa" class="form-label">silinder berapa?</label>
+                            <label for="slndr_berapa" class="form-label ">silinder berapa?</label>
                             <input name="ketebalan_silinder" value="-" required type="text" id="slndr_berapa"
                               class="form-control" aria-describedby="emailHelp">
                           </div>
@@ -241,10 +247,10 @@ $jabatan = $_GET['nama'];
                           No
                         </label>
                         <div class="mb-3 mt-2" id="penyakit">
-                          <label for="penyakit-apa" class="form-label">Penyakit apa yang and miliki?</label>
+                          <label for="penyakit-apa" class="form-label ">Penyakit apa yang and miliki?</label>
                           <input value="-" name="nama_penyakit" id="penyakit-apa" required type="text"
                             class="form-control" aria-describedby="emailHelp">
-                          <label for="penyakit_kapan" class="form-label">Kapan?</label>
+                          <label for="penyakit_kapan" class="form-label ">Kapan?</label>
                           <input value="-" name="lama_penyakit" required type="text" class="form-control"
                             id="penyakit_kapan" aria-describedby="emailHelp">
                         </div>
@@ -268,10 +274,10 @@ $jabatan = $_GET['nama'];
                           No
                         </label>
                         <div class="mb-3 mt-2" id="relasi">
-                          <label for="relasi-nama" class="form-label">Nama</label>
+                          <label for="relasi-nama" class="form-label ">Nama</label>
                           <input value="-" name="nama_teman" required type="text" class="form-control"
                             aria-describedby="emailHelp" id="relasi-nama">
-                          <label for="relasi-jabatan" class="form-label">Jabatannya</label>
+                          <label for="relasi-jabatan" class="form-label ">Jabatannya</label>
                           <input value="-" name="posisi_teman" required id="relasi-jabatan" type="text"
                             class="form-control" aria-describedby="emailHelp">
                         </div>
@@ -279,70 +285,71 @@ $jabatan = $_GET['nama'];
                     </div>
 
                     <div class="mb-3">
-                      <label for="pnjlsan" class="form-label">
-                        <p class="mt-4">Berikan penjelasan singkat kenapa anda tertarik di perushaan ini?</p>
+                      <label for="pnjlsan" class="form-label label">
+                        Berikan penjelasan singkat kenapa anda tertarik di perushaan ini?
                       </label>
                       <input name="penjelasan" required type="text" class="form-control mb-3" id="pnjlsan"
                         aria-describedby="emailHelp">
                     </div>
-                    <div class="mb-3"><label for="eksp_salary">Ekspektasi Salary</label>
-                      <input type="number" class="form-control" name="ekspektasi_salary" id="eksp_salary">
+                    <div class="mb-3"><label class="form-label label" for="eksp_salary">Ekspektasi Salary</label>
+                      <input type="number" required class="form-control" name="ekspektasi_salary" id="eksp_salary">
                     </div>
                     <div class="mb-3">
-                      <label for="pnjlsan" class="form-label">
-                        <p class="mt-4">Kewarganegaraan</p>
+                      <label for="pnjlsan" class="form-label label">
+                        Kewarganegaraan
                       </label>
                       <input name="kewarganegaraan" required type="text" class="form-control mb-3" id="warga"
                         aria-describedby="emailHelp">
                     </div>
-                    <div class="mb-3"><label for="provinsi">Provinsi</label>
-                      <input type="text" class="form-control" name="provinsi" id="provinsi">
+                    <div class="mb-3"><label class="form-label label" for="provinsi">Provinsi</label>
+                      <input type="text" required class="form-control" name="provinsi" id="provinsi">
                     </div>
                     <div class="mb-3">
-                      <label for="kabupaten" class="form-label">
+                      <label for="kabupaten" class="form-label label">
                         Kabupaten
                       </label>
                       <input name="kabupaten" required type="text" class="form-control mb-3" id="kabupaten"
                         aria-describedby="emailHelp">
                     </div>
-                    <div class="mb-3"><label for="kecamatan">Kecamatan</label>
-                      <input type="text" class="form-control" name="kecamatan" id="kecamatan">
+                    <div class="mb-3"><label class="form-label label" for="kecamatan">Kecamatan</label>
+                      <input type="text" required class="form-control" name="kecamatan" id="kecamatan">
                     </div>
-                    <div class="mb-3"><label for="rt">RT</label>
-                      <input type="number" class="form-control" name="rt" id="rt">
+                    <div class="mb-3"><label class="form-label label" for="rt">RT</label>
+                      <input type="number" required class="form-control" name="rt" id="rt">
                     </div>
-                    <div class="mb-3"><label for="rw">RW</label>
-                      <input type="number" class="form-control" name="rw" id="rw">
+                    <div class="mb-3"><label class="form-label label" for="rw">RW</label>
+                      <input type="number" required class="form-control" name="rw" id="rw">
                     </div>
 
 
                     <div class="mb-3">
-                      <label for="formFile" class="form-label fs">
-                        <p>Upload Berkas Lamaran
-                        </p>
-                        <ol type="1">
-                          Berkas Lamaran Berisi:
-                          <!-- <li>
+
+                      <p>Upload Berkas Lamaran
+                      </p>
+                      <ol type="1">
+                        Berkas Lamaran Berisi:
+                        <!-- <li>
                               KTP ASLI <br>
                               <input type="file" class="form-control" name="ktp_asli" id="ktp_aseli">
                             </li> -->
-                          <li>KARTU KELUARGA <br>
-                            <input type="file" class="form-control" accept="application/pdf" name="kartu_keluarga"
-                              id="kk" onchange="validateFile(this, 5000)">
-                          </li>
-                          <li>Pass Foto <br>
-                            <input type="file" class="form-control" accept=".jpeg, .jpg, .png" name="pass_foto"
-                              id="pass_foto" onchange="validateFile(this, 5000)">
-                          </li>
-                          <li> LAMARAN LENGKAP (Surat Lamaran, CV/Daftar Riwayat Hidup, Ijazah, SKHU/Transkip Nilai,
-                            Keterangan Vaksin Terakhir, Surat Sehat Asli) <br>
-                            <br>
+                        <li><label for="kk" class="form-label label">KARTU KELUARGA</label>
+                          <input type="file" class="form-control" accept="application/pdf" name="kartu_keluarga" id="kk"
+                            required onchange="validateFile(this, 5000)">
+                        </li>
+                        <li><label class="form-label label" for=""> Pass Foto</label>
+                          <input type="file" class="form-control" accept=".jpeg, .jpg, .png" name="pass_foto"
+                            id="pass_foto" required onchange="validateFile(this, 5000)">
+                        </li>
+                        <li class="label"> LAMARAN LENGKAP (Surat Lamaran,
+                          CV/Daftar Riwayat Hidup, Ijazah, SKHU/Transkip Nilai,
+                          Keterangan Vaksin Terakhir, Surat Sehat Asli) <br>
+                          <br>
 
-                            -Berkas lamaran yang diupload harus jelas dan bisa terbaca untuk dapat kami proses lebih
-                            lanjut.
-                      </label></li>
-                      <input name="fileberkas" accept="application/pdf" onchange="validateFile(this, 10000)"
-                        class="form-control" type="file" id="formFile">
+                          -Berkas lamaran yang diupload harus jelas dan bisa terbaca untuk dapat kami proses lebih
+                          lanjut.
+                        </li>
+                        <input name="fileberkas" accept="application/pdf" onchange="validateFile(this, 10000)"
+                          class="form-control" required type="file" id="formFile">
                       </ol>
                     </div>
                     <input type="hidden" id="sembunyi" name="jabatan_id" value="">
