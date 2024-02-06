@@ -442,7 +442,7 @@
         method: "GET",
         dataType: "json",
         success: function (response) {
-          console.log(response);
+          // console.log(response);
           let exp_count = 0;
           let fresh_count = 0;
           let magang_count = 0;
@@ -478,7 +478,7 @@
           document.querySelector('#fresh').innerHTML = fresh_count;
         },
         error: function (xhr, status, error) {
-          console.error("Error: " + error);
+          console.error( error);
         }
       });
     });

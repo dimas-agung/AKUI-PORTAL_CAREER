@@ -302,7 +302,7 @@
           // data: { id: 4 },
           dataType: 'json',
           success: function (data) {
-            console.log(data);
+            // console.log(data);
             var jobData = data.jobPosting;
             var htmlContent = '';
             // Iterate through the array and build HTML content
@@ -342,7 +342,7 @@
             $('#output').html(htmlContent);
           },
           error: function (xhr, status, error) {
-            console.error('Error:', status, error);
+            console.error(error);
             $('#output').html('<p>Error loading data</p>');
           }
         });

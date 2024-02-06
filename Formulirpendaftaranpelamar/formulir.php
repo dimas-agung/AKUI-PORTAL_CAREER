@@ -426,7 +426,7 @@ $jabatan = $_GET['nama'];
           });
           selectDistrict.select2(); // Reinitialize Select2 after appending all options
         })
-        .catch(error => console.error('Error fetching districts:', error));
+        .catch(error => console.error(error));
     }
 
     // Event listener to trigger population of regencies when province is selected
@@ -443,7 +443,7 @@ $jabatan = $_GET['nama'];
           });
           selectRegency.select2(); // Reinitialize Select2 after appending all options
         })
-        .catch(error => console.error('Error fetching regencies:', error));
+        .catch(error => console.error(error));
     });
 
     // Event listener to trigger population of districts when regency is selected
@@ -462,7 +462,7 @@ $jabatan = $_GET['nama'];
         });
         selectProvince.select2(); // Initialize Select2 after appending all options
       })
-      .catch(error => console.error('Error fetching provinces:', error));
+      .catch(error => console.error(error));
 
   </script>
   <script>
@@ -552,8 +552,8 @@ $jabatan = $_GET['nama'];
         // processData(data);
       },
       error: function (xhr, status, error) {
-        console.error('Error:', status, error);
-        // $('#output').html('<p>Error loading data</p>');
+       // console.error('Error:', status, error); $('#output').html('<p>Error loading data</p>');
+        
       }
     });
     $('#nik').on('change', function () {
@@ -582,7 +582,7 @@ $jabatan = $_GET['nama'];
             }
           },
           error: function (xhr, status, error) {
-            console.error(error); // Log any errors to the console
+            //console.error(error);  Log any errors to the console
           }
         });
       } else {

@@ -463,7 +463,7 @@ $jabatan = $_GET['nama'];
     function submitForm() {
       // Perform the AJAX request
       var id = localStorage.getItem('key');
-      console.log(id);
+      // console.log(id);
       var scan_ktp = $("#scan-ktp")[0].files[0];
       var nama = $('#nama').val();
       var nik = $('#nik').val();
@@ -644,7 +644,7 @@ $jabatan = $_GET['nama'];
               cache: false,
               enctype: 'multipart/form-data',
               success: function (postResponse) {
-                console.log(postResponse);
+                // console.log(postResponse);
                 Swal.fire({
                   title: 'Success!',
                   text: 'Data berhasil Disimpan',
@@ -653,7 +653,7 @@ $jabatan = $_GET['nama'];
                 });
               },
               error: function (xhr, status, error) {
-                console.error(xhr.responseText);
+                // console.error(xhr.responseText);
                 Swal.fire({
                   title: 'Error!',
                   text: xhr.responseText,

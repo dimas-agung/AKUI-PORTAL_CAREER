@@ -336,7 +336,7 @@ $jabatan = $_GET['nama'];
           localStorage.setItem('key', JSON.stringify(data.data));
         },
         error: function (xhr, status, error) {
-          console.error('Error:', status, error);
+          console.error(error);
           $('#output').html('<p>Error loading data</p>');
         }
       });
