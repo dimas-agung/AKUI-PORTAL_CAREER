@@ -17,6 +17,7 @@ $jabatan = $_GET['nama'];
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
   <style>
     li {
       margin-bottom: 20px;
@@ -76,7 +77,7 @@ $jabatan = $_GET['nama'];
 
               <div class="mb-3">
                 <label for="nik" class="form-label label">NIK KTP</label>
-                <input name="nik" minlength="16" required type="text" class="form-control" id="nik"
+                <input name="nik" minlength="16" required type="number" class="form-control" id="nik"
                   aria-describedby="emailHelp">
 
               </div>
@@ -311,17 +312,23 @@ $jabatan = $_GET['nama'];
                         aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3"><label class="form-label label" for="provinsi">Provinsi</label>
-                      <input type="text" required class="form-control" name="provinsi" id="provinsi">
+                      <select type="text" required class="form-control" name="provinsi" id="province">
+                        <option value="" selected></option>
+                      </select>
                     </div>
                     <div class="mb-3">
                       <label for="kabupaten" class="form-label label">
                         Kabupaten
                       </label>
-                      <input name="kabupaten" required type="text" class="form-control mb-3" id="kabupaten"
+                      <select name="kabupaten" required type="text" class="form-control mb-3" id="regency"
                         aria-describedby="emailHelp">
+                        <option value="" selected></option>
+                      </select>
                     </div>
                     <div class="mb-3"><label class="form-label label" for="kecamatan">Kecamatan</label>
-                      <input type="text" required class="form-control" name="kecamatan" id="kecamatan">
+                      <select type="text" required class="form-control" name="kecamatan" id="district">
+                        <option value="" selected></option>
+                      </select>
                     </div>
                     <div class="mb-3"><label class="form-label label" for="rt">RT</label>
                       <input type="number" required class="form-control" name="rt" id="rt">
@@ -407,6 +414,54 @@ $jabatan = $_GET['nama'];
         fileInput.value = '';
       }
     }
+    function populateDistricts(regencyId) {
+      fetch(`https://www.emsifa.com/api-wilayah-indonesia/api/districts/${regencyId}.json`)
+        .then(response => response.json())
+        .then(districts => {
+          const selectDistrict = $('#district');
+         // Clear previous options
+          districts.forEach(district => {
+            selectDistrict.append(`<option value="${district.id}">${district.name}</option>`);
+          });
+          selectDistrict.select2(); // Reinitialize Select2 after appending all options
+        })
+        .catch(error => console.error('Error fetching districts:', error));
+    }
+
+    // Event listener to trigger population of regencies when province is selected
+    $('#province').on('change', function () {
+      const selectedProvinceId = $(this).val();
+      fetch(`https://www.emsifa.com/api-wilayah-indonesia/api/regencies/${selectedProvinceId}.json`)
+        .then(response => response.json())
+        .then(regencies => {
+          const selectRegency = $('#regency');
+          // Clear previous options
+          regencies.forEach(regency => {
+            selectRegency.append(`<option value="${regency.id}">${regency.name}</option>`);
+          });
+          selectRegency.select2(); // Reinitialize Select2 after appending all options
+        })
+        .catch(error => console.error('Error fetching regencies:', error));
+    });
+
+    // Event listener to trigger population of districts when regency is selected
+    $('#regency').on('change', function () {
+      const selectedRegencyId = $(this).val();
+      populateDistricts(selectedRegencyId);
+    });
+
+    // Fetch provinces and populate select dropdown
+    fetch('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json')
+      .then(response => response.json())
+      .then(provinces => {
+        const selectProvince = $('#province');
+        provinces.forEach(province => {
+          selectProvince.append(`<option value="${province.id}">${province.name}</option>`);
+        });
+        selectProvince.select2(); // Initialize Select2 after appending all options
+      })
+      .catch(error => console.error('Error fetching provinces:', error));
+
   </script>
   <script>
     function validateFileSize() {
