@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="script.js" defer></script>
   <link rel="icon" href="asset/logo2.svg">
   <title>Career</title>
@@ -145,7 +145,7 @@
     right: 20px;
   }
 
-  .wrapper .carousel {
+  .wrapper .car {
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: calc((100% / 3) - 12px);
@@ -157,16 +157,16 @@
   /* .no-transition {
       scroll-behavior: auto;
     } */
-  .carousel.dragging {
+  .car.dragging {
     scroll-behavior: auto;
   }
 
-  .carousel.dragging .cardd {
+  .car.dragging .cardd {
     cursor: grab;
     user-select: none;
   }
 
-  .carousel .cardd {
+  .car .cardd {
     height: 342px;
     list-style: none;
     background: linear-gradient(#ffffff1c, rgba(0, 0, 0, 0.684));
@@ -182,7 +182,7 @@
     transition: 290ms;
   }
 
-  .carousel .cardd:hover {
+  .car .cardd:hover {
     transform: scale(1.01);
     font-size: larger;
   }
@@ -196,13 +196,13 @@
   }
 
   @media screen and (max-width: 900px) {
-    .wrapper .carousel {
+    .wrapper .car {
       grid-auto-columns: calc((100% / 2) - 9px);
     }
   }
 
   @media screen and (max-width: 600px) {
-    .wrapper .carousel {
+    .wrapper .car {
       grid-auto-columns: 100%;
     }
   }
@@ -241,7 +241,7 @@
     text-decoration: none;
   }
 
-  .carousel>button {
+  .car>button {
     border: none;
     border-radius: 10px;
     background-image: url('asset/IMG_7503.jpg');
@@ -250,23 +250,23 @@
     background-size: cover;
   }
 
-  .carousel>button:hover {
+  .car>button:hover {
     transform: scale(0.9);
   }
 
-  .carousel>button:nth-child(2) {
+  .car>button:nth-child(2) {
     background-image: url('asset/IMG_7530.jpg');
   }
 
-  .carousel>button:nth-child(3) {
+  .car>button:nth-child(3) {
     background-image: url('asset/IMG_75405.jpg');
   }
 
-  .carousel>button:nth-child(4) {
+  .car>button:nth-child(4) {
     background-image: url(asset/IMG_75405.jpg);
   }
 
-  .carousel>button:nth-child(5) {
+  .car>button:nth-child(5) {
     background-image: url(asset/Netflix\ acquires\ streaming\ rights\ to\ all\ 21\ Studio\ Ghibli\ films.jpeg);
   }
 
@@ -331,35 +331,52 @@
       </div>
     </div>
   </section>
-
-  <!-- akhir pop up -->
-  <section class="hero">
-    <nav class="navbar navbar-expand-lg" style="background-color:transparent;">
-      <div class="container-fluid" style="display:flex;justify-content:center;">
-        <a class="navbar-brand" href="#"><img src="asset/LOGO NO REG.png" alt="" style="max-width: 300px;"></a>
-        <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav " style="margin-left: 250px;">
-          <li class="nav-item " style="color:black;">
-            <h1 style="font-family: 'Cinzel Decorative';">PT. Akui Bird Nest Karir</h1>
-          </li>
-
-        </ul> -->
+  <div id="carouselExampleInterval" style="position: relative;" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="9000">
+        <video src="asset/1.mp4" autoplay muted loop class="d-block w-100" alt="asset/">
       </div>
+      <div class="carousel-item" data-bs-interval="13000">
+        <video src="asset/2.mp4" autoplay muted loop class="d-block w-100" alt="asset/">
+      </div>
+      <div class="carousel-item" data-bs-interval="20000">
+        <video src="asset/3.mp4" autoplay muted loop class="d-block w-100" alt="asset/">
+      </div>
+      <div class="carousel-item" data-bs-interval="9000">
+        <video src="asset/4.mp4" autoplay muted loop class="d-block w-100" alt="asset/">
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <video src="asset/5.mp4" autoplay muted loop class="d-block w-100" alt="asset/">
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg"
+      style="background-color:transparent;position: absolute;top: 0;left: 50%;transform: translateX(-50%);z-index: 99;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="asset/LOGO NO REG.png" alt="" style="max-width: 300px;"></a>
       </div>
     </nav>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <!-- akhir pop up -->
+  <!-- <section class="hero">
+    
     <h1 class="h1" style="letter-spacing: 20px;font-family:'Noto serif';">SELAMAT DATANG</h1>
     <video class="video-bg" src="asset/1 MENIT.mp4" autoplay muted loop></video>
-  </section>
+  </section> -->
   <!-- akhir isi -->
   <!-- card box -->
   <section class="gal">
     <div class="wrapper">
       <i id="left" class="fa-solid fa-chevron-left"></i>
-      <ul class="carousel" style="padding-left: 0">
+      <ul class="car" style="padding-left: 0">
         <!-- onclick="window.location.href ='Untitled-1.php'" -->
         <button id="expBtn">
           <li draggable="false" class="cardd" id="cd1">
@@ -478,17 +495,25 @@
           document.querySelector('#fresh').innerHTML = fresh_count;
         },
         error: function (xhr, status, error) {
-          console.error( error);
+          console.error(error);
         }
       });
     });
+    setInterval(() => {
 
+    }, 9000);
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
 </body>
 

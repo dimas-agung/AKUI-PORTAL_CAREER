@@ -1,5 +1,7 @@
 <?php
+session_start();
 $jabatan = $_GET['nama'];
+
 
 
 
@@ -12,7 +14,7 @@ $jabatan = $_GET['nama'];
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>Information</title>
   <link rel="icon" href="asset/logo2.svg">
   <link rel="stylesheet" href="css/infor.css" />
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -115,7 +117,7 @@ $jabatan = $_GET['nama'];
         </span>
       </div>
       <!-- <a href=""> -->
-      <button type="button" class="btn btn-lg btn-outline-light mt-3">
+      <button type="button" id="next" name="next" class="btn btn-lg btn-outline-light mt-3">
         Lamar Ke Posisi
       </button>
     </div>
@@ -311,7 +313,17 @@ $jabatan = $_GET['nama'];
           $('.btn').on('click', function () {
             // Assuming you have a URL to redirect to
             window.location.href = `Formulirpendaftaranpelamar/formulir.php?nama=${buggati}`;
+
+            // Log the value of 'buggati'
+            // console.log('buggati:', buggati);
+
+            // Set localStorage item
+            localStorage.setItem('tahu', 'isi');
+
+            // Log the value of the localStorage item
+            // console.log('localStorage:', localStorage.getItem('tahu'));
           });
+
           var tanggungJawab = dta.tanggungjawab_kompeten;
           const stepsArray = tanggungJawab.split("\r\n");
           // Menghapus angka di awal setiap langkah dan membuat HTML untuk poin-poin
@@ -341,6 +353,8 @@ $jabatan = $_GET['nama'];
         }
       });
     });
+
+
 
   </script>
 

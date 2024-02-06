@@ -308,11 +308,14 @@ $jabatan = $_GET['nama'];
                       <label for="pnjlsan" class="form-label label">
                         Kewarganegaraan
                       </label>
-                      <input name="kewarganegaraan" required type="text" class="form-control mb-3" id="warga"
+                      <select name="kewarganegaraan" required type="text" class="form-select mb-3" id="warga"
                         aria-describedby="emailHelp">
+                        <option value="WNI">WNI (Warga Negara Indonesia)</option>
+                        <option value="WNA">WNA (Warga Negara Asing)</option>
+                      </select>
                     </div>
                     <div class="mb-3"><label class="form-label label" for="provinsi">Provinsi</label>
-                      <select type="text" required class="form-control" name="provinsi" id="province">
+                      <select type="text" required class="form-select" name="provinsi" id="province">
                         <option value="" selected></option>
                       </select>
                     </div>
@@ -320,13 +323,13 @@ $jabatan = $_GET['nama'];
                       <label for="kabupaten" class="form-label label">
                         Kabupaten
                       </label>
-                      <select name="kabupaten" required type="text" class="form-control mb-3" id="regency"
+                      <select name="kabupaten" required type="text" class="form-select mb-3" id="regency"
                         aria-describedby="emailHelp">
                         <option value="" selected></option>
                       </select>
                     </div>
                     <div class="mb-3"><label class="form-label label" for="kecamatan">Kecamatan</label>
-                      <select type="text" required class="form-control" name="kecamatan" id="district">
+                      <select type="text" required class="form-select" name="kecamatan" id="district">
                         <option value="" selected></option>
                       </select>
                     </div>
@@ -398,6 +401,10 @@ $jabatan = $_GET['nama'];
   <!-- Include SweetAlert library -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
+    if (!localStorage.getItem('tahu')) {
+      // If 'tahu' doesn't exist, set it to 'isi'
+      window.location.href = '../index.php';
+    }
     function checkFile() {
       const fileInput = document.getElementById('formFile');
       const file = fileInput.files[0];
@@ -541,7 +548,7 @@ $jabatan = $_GET['nama'];
       dataType: 'json',
       success: function (data) {
         // console.log(data);
-        localStorage.clear();
+        // localStorage.clear();
         localStorage.setItem('key', JSON.stringify(data.data.id));
         // id = data.data.id;
 
@@ -552,8 +559,8 @@ $jabatan = $_GET['nama'];
         // processData(data);
       },
       error: function (xhr, status, error) {
-       // console.error('Error:', status, error); $('#output').html('<p>Error loading data</p>');
-        
+        // console.error('Error:', status, error); $('#output').html('<p>Error loading data</p>');
+
       }
     });
     $('#nik').on('change', function () {
