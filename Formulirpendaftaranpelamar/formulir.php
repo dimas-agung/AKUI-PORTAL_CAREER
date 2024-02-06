@@ -419,7 +419,8 @@ $jabatan = $_GET['nama'];
         .then(response => response.json())
         .then(districts => {
           const selectDistrict = $('#district');
-         // Clear previous options
+          selectDistrict.empty(); // Clear previous options
+          selectDistrict.append(`<option value="">-- PILIH KECAMATAN --</option>`);
           districts.forEach(district => {
             selectDistrict.append(`<option value="${district.id}">${district.name}</option>`);
           });
@@ -435,7 +436,8 @@ $jabatan = $_GET['nama'];
         .then(response => response.json())
         .then(regencies => {
           const selectRegency = $('#regency');
-          // Clear previous options
+          selectRegency.empty(); // Clear previous options
+          selectRegency.append(`<option value="">-- PILIH KABUPATEN --</option>`)
           regencies.forEach(regency => {
             selectRegency.append(`<option value="${regency.id}">${regency.name}</option>`);
           });
