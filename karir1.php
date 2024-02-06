@@ -170,6 +170,7 @@
       margin: 20px 0 0 0;
       /* width: 100%; */
     }
+
   }
 
   .link {
@@ -235,6 +236,30 @@
   .hide {
     display: none !important;
   }
+
+  @media only screen and (max-width: 480px) {
+    .video-bg {
+      height: auto;
+      width: 100%;
+    }
+
+    .hero {
+      height: auto;
+    }
+
+    .h1 {
+      display: none;
+    }
+
+    /* min-height: 100%;
+      /* height: auto;
+      width: 100%; */
+    /* min-width: 100%; */
+    /* /* z-index: -1; */
+    .gal {
+      min-height: 50vh;
+    }
+    }
 </style>
 
 <body>

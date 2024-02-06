@@ -65,7 +65,7 @@
   }
 
   .hero {
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     text-align: center;
     align-items: center;
@@ -76,6 +76,7 @@
     height: 100vh;
     overflow: hidden;
     width: 100%;
+    background: linear-gradient(#ffffff1c, rgba(0, 0, 0, 0.684));
   }
 
   .video-bg {
@@ -89,22 +90,11 @@
     z-index: -1;
   }
 
-  @media only screen and (max-width: 480px) {
-    .video-bg {
-      height: auto;
-      width: auto;
-    }
-
-    /* min-height: 100%;
-      /* height: auto;
-      width: 100%; */
-    /* min-width: 100%; */
-    /* /* z-index: -1; */
-
-
-
-
+  .h1 {
+    margin-top: 5em;
   }
+
+
 
 
 
@@ -279,6 +269,40 @@
   .carousel>button:nth-child(5) {
     background-image: url(asset/Netflix\ acquires\ streaming\ rights\ to\ all\ 21\ Studio\ Ghibli\ films.jpeg);
   }
+
+  @media only screen and (max-width: 480px) {
+    .video-bg {
+      height: auto;
+      width: auto;
+    }
+
+    .hero {
+      height: 50vh;
+    }
+
+    .h1 {
+      display: none;
+    }
+
+    /* min-height: 100%;
+      /* height: auto;
+      width: 100%; */
+    /* min-width: 100%; */
+    /* /* z-index: -1; */
+    .gal {
+      min-height: 50vh;
+    }
+
+    video {
+      /* position: relative; */
+      bottom: 0;
+      left: 0;
+      right: 0;
+      transform: translateX(-700px);
+    }
+
+
+  }
 </style>
 
 <body>
@@ -293,14 +317,13 @@
           <div class="col-md-8">
             <div class="card-body" style="padding: 10px">
               <button id="close" onclick="hide()">&times;</button>
-              <h5 class="card-title">Terima kasih atas kunjungan anda</h5>
+              <h5 class="card-title">Terima kasih atas kunjungan anda,</h5>
+              <br>
               <p class="card-text">
-                Kami menghimbau para pencari kerja untuk berhati-hati dan
-                mewaspadai beragam modus penipuan perekrutan yang
-                mengatasnamakan PT AKUI Bird Nest Indonesia. Dalam setiap
-                proses rekrutmen dan penerimaan karyawan, PT Akui Bird Nest
-                Indonesia maupun konsultan rekruitmennya tidak memungut biaya
-                apapun.
+
+                Kami menghimbau para pencari kerja untuk berhati-hati dan mewaspadai beragam modus penipuan perekrutan
+                yang mengatasnamakan PT AKUI BIRD NEST INDONESIA. Dalam setiap proses rekrutmen dan penerimaan karyawan,
+                PT AKUI BIRD NEST INDONESIA maupun konsultan rekrutmennya tidak memungut biaya apapun.
               </p>
             </div>
           </div>
@@ -308,10 +331,13 @@
       </div>
     </div>
   </section>
-  <nav class="navbar fixed-top navbar-expand-lg" style="background-color:#ffffff1c;">
-    <div class="container-fluid" style="display:flex;justify-content:center;">
-      <a class="navbar-brand" href="#"><img src="asset/LOGO NO REG.png" alt="" style="max-width: 300px;"></a>
-      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+
+  <!-- akhir pop up -->
+  <section class="hero">
+    <nav class="navbar navbar-expand-lg" style="background-color:transparent;">
+      <div class="container-fluid" style="display:flex;justify-content:center;">
+        <a class="navbar-brand" href="#"><img src="asset/LOGO NO REG.png" alt="" style="max-width: 300px;"></a>
+        <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -322,12 +348,10 @@
           </li>
 
         </ul> -->
-    </div>
-    </div>
-  </nav>
-  <!-- akhir pop up -->
-  <section class="hero">
-    <h1 style="letter-spacing: 20px;font-family:'Noto serif';">SELAMAT DATANG</h1>
+      </div>
+      </div>
+    </nav>
+    <h1 class="h1" style="letter-spacing: 20px;font-family:'Noto serif';">SELAMAT DATANG</h1>
     <video class="video-bg" src="asset/1 MENIT.mp4" autoplay muted loop></video>
   </section>
   <!-- akhir isi -->

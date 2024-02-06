@@ -1,4 +1,17 @@
 <?php
+echo '<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Form</title>
+    <!-- Include SweetAlert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+    <!-- Your form and other HTML content here -->
+</body>
+</html>';
 $current_directory = dirname(__FILE__);
 $ch = curl_init();
 require 'api_ip.php';
@@ -69,11 +82,15 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 $response = curl_exec($ch);
 if (curl_errno($ch)) {
-  echo 'Curl error: ' . curl_error($ch);
+  $error_message = 'Curl error: ' . curl_error($ch);
+  echo '<script>';
+  echo 'window.onload = function() {
+          swal("Error", "' . $error_message . '", "error").then(function() { window.location = "../formulir.php?nama=' . $_POST["namaJ"] . '"; });
+        };';
+  echo '</script>';
+} else {
+  curl_close($ch);
+  header('Location: Thanks.php');
+  exit();
 }
-
-curl_close($ch);
-
-echo $response;
-header('Location: Thanks.php');
 ?>

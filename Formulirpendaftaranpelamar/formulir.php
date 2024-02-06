@@ -98,7 +98,15 @@ $jabatan = $_GET['nama'];
                 <label class="label" for="tinggi_badan">Tinggi Badan</label>
                 <input type="number" required name="tinggi_badan" class="form-control" id="tinggi_badan">
                 <label class="label" for="agama">Agama</label>
-                <input type="text" required class="form-control" name="agama" id="agama">
+                <select required class="form-control" name="agama" id="agama">
+                  <option value=""></option>
+                  <option value="Islam">Islam</option>
+                  <option value="Kristen Protestan">Kristen Protestan</option>
+                  <option value="Kristen Katolik">Kristen Katolik</option>
+                  <option value="Hindu">Hindu</option>
+                  <option value="Buddha">Buddha</option>
+                  <option value="Konghucu">Konghucu</option>
+                </select>
               </div>
               <!-- <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label label">Usia</label>
@@ -122,7 +130,8 @@ $jabatan = $_GET['nama'];
 
               <div class="mb-3 mt-2">
 
-                <label for="email" class="form-label label">Email Aktif</label>
+                <label for="email" class="form-label label">Email Aktif <br>
+                  Pastikan Email anda benar dan pastikan anda mengisi email tidak salah ketik</label>
                 <input name="email" required type="email" class="form-control" id="email" aria-describedby="emailHelp">
               </div>
 
@@ -332,10 +341,12 @@ $jabatan = $_GET['nama'];
                               KTP ASLI <br>
                               <input type="file" class="form-control" name="ktp_asli" id="ktp_aseli">
                             </li> -->
-                        <li><label for="kk" class="form-label label">KARTU KELUARGA</label>
-                          <input type="file" class="form-control" accept="application/pdf" name="kartu_keluarga" id="kk"
-                            required onchange="validateFile(this, 5000)">
+                        <li>
+                          <label for="kk" class="form-label label">KARTU KELUARGA</label>
+                          <input type="file" class="form-control" accept="application/pdf .jpeg" name="kartu_keluarga"
+                            id="kk" required onchange="validateFile(this, 5000)">
                         </li>
+
                         <li><label class="form-label label" for=""> Pass Foto</label>
                           <input type="file" class="form-control" accept=".jpeg, .jpg, .png" name="pass_foto"
                             id="pass_foto" required onchange="validateFile(this, 5000)">
@@ -354,7 +365,7 @@ $jabatan = $_GET['nama'];
                     </div>
                     <input type="hidden" id="sembunyi" name="jabatan_id" value="">
                     <input type="hidden" id="o" name="status" value="PENDING">
-
+                    <input type="hidden" name="namaJ" value="<?= $jabatan ?>">
                     <button class="btn btn-warning text-light" onsubmit="submitForm()">Submit</button>
 
             </form>
@@ -379,7 +390,24 @@ $jabatan = $_GET['nama'];
   </style>
   <!-- Include SweetAlert library -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    function checkFile() {
+      const fileInput = document.getElementById('formFile');
+      const file = fileInput.files[0];
 
+      if (file && file.type !== 'application/pdf') {
+        // Show error message
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Tolong file PDF!',
+        });
+
+        // Reset file input
+        fileInput.value = '';
+      }
+    }
+  </script>
   <script>
     function validateFileSize() {
       // You can add more file input validations here if needed
@@ -404,9 +432,11 @@ $jabatan = $_GET['nama'];
 
       return true; // File size is within the limit
     }
+
   </script>
 
   <script>
+
     function text(x) {
       if (x == 0) document.getElementById("hmm").style.display = "block";
       else document.getElementById("hmm").style.display = "none";
@@ -472,6 +502,7 @@ $jabatan = $_GET['nama'];
     $('#nik').on('change', function () {
       if ($(this).val().length === 16) {
         var selectedOption = $(this).val();
+
         var id = localStorage.getItem('key');
         // AJAX request
         $.ajax({
