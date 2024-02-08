@@ -316,20 +316,20 @@ $jabatan = $_GET['nama'];
                     </div>
                     <div class="mb-3"><label class="form-label label" for="provinsi">Provinsi</label>
                       <select type="text" required class="form-select" name="provinsi" id="province">
-                        <option value="" selected></option>
+                        <option value="" selected>--Pilih Provinsi--</option>
                       </select>
                     </div>
                     <div class="mb-3">
                       <label for="kabupaten" class="form-label label">
                         Kabupaten
                       </label>
-                      <select name="kabupaten" required type="text" class="form-select mb-3" id="regency"
+                      <select name="kabupaten" required type="text" class="form-select mb-3" id="kabupaten"
                         aria-describedby="emailHelp">
                         <option value="" selected></option>
                       </select>
                     </div>
                     <div class="mb-3"><label class="form-label label" for="kecamatan">Kecamatan</label>
-                      <select type="text" required class="form-select" name="kecamatan" id="district">
+                      <select type="text" required class="form-select" name="kecamatan" id="kecamatan">
                         <option value="" selected></option>
                       </select>
                     </div>
@@ -421,55 +421,49 @@ $jabatan = $_GET['nama'];
         fileInput.value = '';
       }
     }
-    function populateDistricts(regencyId) {
-      fetch(`https://www.emsifa.com/api-wilayah-indonesia/api/districts/${regencyId}.json`)
-        .then(response => response.json())
-        .then(districts => {
-          const selectDistrict = $('#district');
-          selectDistrict.empty(); // Clear previous options
-          selectDistrict.append(`<option value="">-- PILIH KECAMATAN --</option>`);
-          districts.forEach(district => {
-            selectDistrict.append(`<option value="${district.id}">${district.name}</option>`);
-          });
-          selectDistrict.select2(); // Reinitialize Select2 after appending all options
-        })
-        .catch(error => console.error(error));
-    }
+    // function populateDistricts(regencyId) {
+    //   fetch(`http://192.168.1.13:8000/api/kecamatan/${regencyId}?limit=38&page=1`)
+    //     .then(response => response.json())
+    //     .then(districts => {
+    //       const selectDistrict = $('#district');
+    //       selectDistrict.empty(); // Clear previous options
+    //       districts.forEach(district => {
+    //         selectDistrict.append(`<option value="${district.id}">${district.nama}</option>`);
+    //       });
+    //       selectDistrict.select2(); // Reinitialize Select2 after appending all options
+    //     })
+    //     .catch(error => console.error('Error fetching districts:', error));
+    // }
 
     // Event listener to trigger population of regencies when province is selected
-    $('#province').on('change', function () {
-      const selectedProvinceId = $(this).val();
-      fetch(`https://www.emsifa.com/api-wilayah-indonesia/api/regencies/${selectedProvinceId}.json`)
-        .then(response => response.json())
-        .then(regencies => {
-          const selectRegency = $('#regency');
-          selectRegency.empty(); // Clear previous options
-          selectRegency.append(`<option value="">-- PILIH KABUPATEN --</option>`)
-          regencies.forEach(regency => {
-            selectRegency.append(`<option value="${regency.id}">${regency.name}</option>`);
-          });
-          selectRegency.select2(); // Reinitialize Select2 after appending all options
-        })
-        .catch(error => console.error(error));
-    });
+    // $('#province').on('change', function () {
+    //   const selectedProvinceId = $(this).val();
+    //   fetch(`http://192.168.1.13:8000/api/kabupaten/${selectedProvinceId}?limit=38&page=1`)
+    //     .then(response => response.json())
+    //     .then(regencies => {
+    //
+    //       selectRegency.select2(); // Reinitialize Select2 after appending all options
+    //     })
+    //     .catch(error => console.error('Error fetching regencies:', error));
+    // });
 
-    // Event listener to trigger population of districts when regency is selected
-    $('#regency').on('change', function () {
-      const selectedRegencyId = $(this).val();
-      populateDistricts(selectedRegencyId);
-    });
+    // // Event listener to trigger population of districts when regency is selected
+    // $('#regency').on('change', function () {
+    //   const selectedRegencyId = $(this).val();
+    //   populateDistricts(selectedRegencyId);
+    // });
 
-    // Fetch provinces and populate select dropdown
-    fetch('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json')
-      .then(response => response.json())
-      .then(provinces => {
-        const selectProvince = $('#province');
-        provinces.forEach(province => {
-          selectProvince.append(`<option value="${province.id}">${province.name}</option>`);
-        });
-        selectProvince.select2(); // Initialize Select2 after appending all options
-      })
-      .catch(error => console.error(error));
+    // // Fetch provinces and populate select dropdown
+    // fetch('http://192.168.1.13:8000/api/provinsi?limit=38&page=1')
+    //   .then(response => response.json())
+    //   .then(provinces => {
+    //
+    //     provinces.forEach(province => {
+    //
+    //     });
+    //     selectProvince.select2(); // Initialize Select2 after appending all options
+    //   })
+    //   .catch(error => console.error('Error fetching provinces:', error));
 
   </script>
   <script>
@@ -603,6 +597,150 @@ $jabatan = $_GET['nama'];
     });
 
   </script>
+  <!-- <script src="../wilayah/provinsi.js"></script>
+
+  <script src="../wilayah/kecamatan.js"></script>
+  <script src="../wilayah/kabupaten.js"></script>
+  <script>
+
+    $(document).ready(function () {
+
+      function populateRegions() {
+        const selectedProvinceCode = $('#province').val(); // Get the selected province code
+        const provinsiId = data.find(item => item.code === selectedProvinceCode).id; // Find the province ID based on the selected province code
+
+        const region = kabupaten.filter(item => item.provinsi_id === provinsiId);
+
+        // Populate the select regency dropdown
+        const selectRegency = $('#regency');
+        selectRegency.empty(); // Clear previous options
+        selectRegency.append(`<option value="">--Pilih Kabupaten--</option>`);
+        region.forEach(item => {
+          selectRegency.append(`<option value="${item.id}">${item.name}</option>`);
+        });
+
+        // Clear and disable district dropdown
+        const selectDistrict = $('#district');
+        selectDistrict.empty().prop('disabled', true).select2(); // Clear options and disable
+
+        // Re-enable district dropdown when a region is selected
+        selectRegency.change(function () {
+          const selectedRegencyId = $(this).val(); // Get the selected region (kabupaten) ID
+
+          // Filter districts based on the selected region ID
+          const kecamatan = distrik.filter(item => item.kabupaten_id == selectedRegencyId);
+
+          // Populate the district dropdown
+          selectDistrict.empty().prop('disabled', false); // Clear previous options and enable
+          selectDistrict.append(`<option value="">--Pilih Kecamatan--</option>`);
+          kecamatan.forEach(district => {
+            selectDistrict.append(`<option value="${district.id}">${district.name}</option>`);
+          });
+          
+        });
+      }
+
+      // Populate province select dropdown
+      const selectProvince = $('#province');
+      data.forEach(item => {
+        selectProvince.append(`<option value="${item.code}">${item.name}</option>`);
+      });
+
+      // Initial population of regions
+      populateRegions();
+
+      // Bind onchange event to province select
+      selectProvince.change(function () {
+        populateRegions(); // Call the function to repopulate regions on province change
+      });
+    });
+
+  </script> -->
+
+
+  <script>
+    $(document).ready(function () {
+      // Load province data
+      $.ajax({
+        url: 'wilayah/provinsi.json',
+        dataType: 'json',
+        success: function (data) {
+          // Iterate over each province and add it to the select element
+          $.each(data, function (index, province) {
+            $('#province').append(`<option value="${province.name}" data-id="${province.id}" data-kabupaten="${province.kabupaten}">${province.name}</option>`);
+          });
+
+          // Trigger change event to initially populate kabupaten based on the selected province
+          $('#province').change();
+        },
+        error: function (xhr, status, error) {
+          console.error('Failed to fetch province data:', status, error);
+        }
+      });
+
+      // Load kabupaten data based on selected province
+      $('#province').change(function () {
+        var selectedProvinceId = $(this).find(':selected').data('id'); // Correct way to retrieve data-id attribute
+        var selectedKabupaten = $(this).find(':selected').data('kabupaten'); // Retrieve kabupaten data
+
+        // Clear existing kabupaten options
+        $('#kabupaten').empty().append('<option value="">Select Kabupaten</option>');
+        $('#kecamatan').empty().append('<option value="">Select Kecamatan</option>');
+
+        // Fetch kabupaten data based on selected province
+        $.ajax({
+          url: 'wilayah/kabupaten.json',
+          dataType: 'json',
+          success: function (data) {
+            // Iterate over each kabupaten and display only the ones matching the selected province
+            $.each(data, function (index, kabupaten) {
+              if (kabupaten.provinsi_id == selectedProvinceId) {
+                $('#kabupaten').append(`<option value="${kabupaten.name}" data-id="${kabupaten.id}" data-kabupaten="${kabupaten.kabupaten}">${kabupaten.name}</option>`);
+              }
+            });
+
+            // Trigger change event to initially populate kecamatan based on the selected kabupaten
+            $('#kabupaten').change();
+          },
+          error: function (xhr, status, error) {
+            console.error('Failed to fetch kabupaten data:', status, error);
+          }
+        });
+      });
+
+      // Load kecamatan data based on selected kabupaten
+      $('#kabupaten').change(function () {
+        var selectedKabupatenId = $(this).find(':selected').data('id'); // Correct way to retrieve data-id attribute
+
+        // Clear existing kecamatan options
+        $('#kecamatan').empty().append('<option value="">Select Kecamatan</option>');
+
+        // Fetch kecamatan data based on selected kabupaten
+        $.ajax({
+          url: 'wilayah/kecamatan.json',
+          dataType: 'json',
+          success: function (data) {
+            // Iterate over each kecamatan and display only the ones matching the selected kabupaten
+            $.each(data, function (index, kecamatan) {
+              if (kecamatan.kabupaten_id == selectedKabupatenId) {
+                $('#kecamatan').append(`<option value="${kecamatan.kecamatan}" data-kecamatan="${kecamatan.kecamatan}">${kecamatan.name}</option>`);
+              }
+            });
+          },
+          error: function (xhr, status, error) {
+            console.error('Failed to fetch kecamatan data:', status, error);
+          }
+        });
+      });
+
+      // Initialize Select2 after all select elements are populated
+      $('#province').select2();
+      $('#kabupaten').select2();
+      $('#kecamatan').select2();
+    });
+
+  </script>
+
 
 
 </body>

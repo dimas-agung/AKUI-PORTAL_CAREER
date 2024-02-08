@@ -23,7 +23,7 @@ $nama_fileberkas = $_FILES['fileberkas']["name"];
 $file_tmp_fileberkas = $_FILES["fileberkas"]["tmp_name"];
 $file_path_fileberkas = $current_directory . '/storage/' . $nama_fileberkas;
 move_uploaded_file($file_tmp_fileberkas, $file_path_fileberkas);
-
+// var_dump($_POST);return;
 $data = array(
   'scan_ktp' => new CURLfile($file_path_ktp),
   'nama' => $_POST['nama'],
@@ -68,20 +68,30 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 $response = curl_exec($ch);
-if (curl_errno($ch)) {
-  $error = curl_error($ch);
-  // Check if the error message indicates a MySQL error
-  if (strpos($error, 'MySQL') !== false) {
-    header('Location: err.php?nama='.$_POST['namaJ']);
-    exit();
-  } else {
-    header('Location: 404.php');
-    exit();
-  }
-} else {
-  curl_close($ch);
+// if (curl_errno($ch)) {
+//   $error = curl_error($ch);
+//   // Check if the error message indicates a MySQL error
+//   if (strpos($error, 'MySQL') !== false) {
+//     
+//     exit();
+//   } else {
+//     
+//     exit();
+//   }
+// } else {
+//   curl_close($ch);
+//   
+//   // exit();
+// }
+$data = json_decode($response);
+
+if ($data->success === true) {
   header('Location: Thanks.php');
-  exit();
+} elseif ($data->success === false) {
+  header('Location: err.php?nama=' . $_POST['namaJ']);
+} else {
+  header('Location: 404.php');
 }
-// echo $response;
+
+echo $response;
 ?>
