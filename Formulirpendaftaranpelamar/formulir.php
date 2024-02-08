@@ -723,7 +723,7 @@ $jabatan = $_GET['nama'];
             // Iterate over each kecamatan and display only the ones matching the selected kabupaten
             $.each(data, function (index, kecamatan) {
               if (kecamatan.kabupaten_id == selectedKabupatenId) {
-                $('#kecamatan').append(`<option value="${kecamatan.kecamatan}" data-kecamatan="${kecamatan.kecamatan}">${kecamatan.name}</option>`);
+                $('#kecamatan').append(`<option value="${kecamatan.name}" data-kecamatan="${kecamatan.kabupaten_id}">${kecamatan.name}</option>`);
               }
             });
           },
