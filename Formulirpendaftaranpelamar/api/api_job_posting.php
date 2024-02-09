@@ -1,6 +1,6 @@
 <?php
 $id = $_GET['id'];
-require 'api_ip.php';
+require '../../api/api_ip.php';
 $url = $link . 'api/JobTitle?nama=' . urlencode($id);
 // echo $url;
 // return;

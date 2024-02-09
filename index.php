@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <script src="script.js" defer></script>
+  <script src="caraousel.js" defer></script>
   <link rel="icon" href="asset/logo2.svg">
   <title>Career</title>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -393,7 +393,7 @@
             <div class="img">
               <div class="text-light">
                 <h2>Magang</h2>
-                <p draggable="false"><span id="magang">0</span> Posisi teredia</p>
+                <p draggable="false"><span id="magang">0</span> Posisi tersedia</p>
               </div>
             </div>
           </li>
@@ -403,30 +403,11 @@
             <div class="img">
               <div class="text-light">
                 <h2>Fresh Graduate</h2>
-                <p draggable="false"><span id="fresh">0</span> Posisi teredia</p>
+                <p draggable="false"><span id="fresh">0</span> Posisi tersedia</p>
               </div>
             </div>
           </li>
-        </button>
-        <!-- <button id="chef-btn" type="button">
-          <li class="cardd" id="cd4">
-            <div class="img">
-              <div class="text-light">
-                <h2>Chef</h2>
-                <p draggable="false"><span id="chef">0</span> Posisi tersedia</p>
-              </div>
-            </div>
-          </li>
-        </button> -->
-        <!-- <button type="button" onclick="location.href='Untitled-1.php'"> -->
-        <!-- <li class="cardd" id="cd5">
-            <div class="img">
-              <div class="text-light">
-                <h2>Lorem</h2>
-                <p draggable="false">Lorem ipsum dolor sit amet.</p>
-              </div>
-            </div>
-          </li> -->
+        </button>        
         </button>
       </ul>
       <i id="right" class="fa-solid fa-chevron-right"></i>

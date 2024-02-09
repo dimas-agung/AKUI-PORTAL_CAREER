@@ -1,4 +1,4 @@
-const carousel = document.querySelector(".carousel");
+const carousel = document.querySelector(".car");
 const arrowBtns = document.querySelectorAll(".wrapper i");
 const firstCardWidth = carousel.querySelector(".cardd").offsetWidth;
 

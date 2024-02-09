@@ -1,7 +1,7 @@
 <?php
 $current_directory = dirname(__FILE__);
 $ch = curl_init();
-require 'api_ip.php';
+require '../../api/api_ip.php';
 $url = $link . 'api/Pelamar/Store';
 
 $nama_ktp = $_FILES['scan_ktp']["name"];
