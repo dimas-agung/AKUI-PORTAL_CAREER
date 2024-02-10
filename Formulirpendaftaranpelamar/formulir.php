@@ -52,8 +52,7 @@ $jabatan = $_GET['nama'];
       </div>
 
 
-      <form action="api/api_pelamar.php" method="post" enctype="multipart/form-data"
-        onsubmit="return validateFileSize()">
+      <form id="upload-form" method="post" enctype="multipart/form-data" onsubmit="return validateFileSize()">
         <div class="card m-3 md">
           <div class="card-body border-top border-5 border-warning">
             <h5 class="card-title text-center"></h5>
@@ -66,8 +65,8 @@ $jabatan = $_GET['nama'];
                   Foto KTP
 
                 </label>
-                <input required name="scan_ktp" accept=".jpeg, .jpg, .png" class="form-control" type="file"
-                  id="scan-ktp" onchange="validateFile(this, 5000)">
+                <input required name="scan_ktp" accept="application/pdf,.jpeg,.jpg,.png" class=" form-control"
+                  type="file" id="scan-ktp" onchange="validateFile(this, 5000)">
               </div>
               <div class="mb-3">
                 <label for="nama" class="form-label label">Nama lengkap sesuai KTP</label>
@@ -353,7 +352,7 @@ $jabatan = $_GET['nama'];
                             </li> -->
                         <li>
                           <label for="kk" class="form-label label">KARTU KELUARGA</label>
-                          <input type="file" class="form-control" accept="application/pdf .jpeg" name="kartu_keluarga"
+                          <input type="file" class="form-control" accept="application/pdf, .jpeg" name="kartu_keluarga"
                             id="kk" required onchange="validateFile(this, 5000)">
                         </li>
 
@@ -405,67 +404,50 @@ $jabatan = $_GET['nama'];
       // If 'tahu' doesn't exist, set it to 'isi'
       window.location.href = '../index.php';
     }
-    function checkFile() {
-      const fileInput = document.getElementById('formFile');
-      const file = fileInput.files[0];
+    $(document).ready(function () {
+      $('#upload-form').on('submit', function (e) {
+        e.preventDefault();
 
-      if (file && file.type !== 'application/pdf') {
-        // Show error message
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Tolong file PDF!',
+        var formData = new FormData(this);
+
+        $.ajax({
+          url: 'api/api_pelamar.php',
+          type: 'POST',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function (response) {
+            var responseData = JSON.parse(response);
+            if (responseData.success) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: responseData.message
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.href = 'thanks.php';
+                }
+              });
+            } else {
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: responseData.message
+              });
+            }
+          },
+          error: function (xhr, status, error) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'An unexpected error occurred. Please try again later.'
+            });
+          }
         });
-
-        // Reset file input
-        fileInput.value = '';
-      }
-    }
-    // function populateDistricts(regencyId) {
-    //   fetch(`http://192.168.1.13:8000/api/kecamatan/${regencyId}?limit=38&page=1`)
-    //     .then(response => response.json())
-    //     .then(districts => {
-    //       const selectDistrict = $('#district');
-    //       selectDistrict.empty(); // Clear previous options
-    //       districts.forEach(district => {
-    //         selectDistrict.append(`<option value="${district.id}">${district.nama}</option>`);
-    //       });
-    //       selectDistrict.select2(); // Reinitialize Select2 after appending all options
-    //     })
-    //     .catch(error => console.error('Error fetching districts:', error));
-    // }
-
-    // Event listener to trigger population of regencies when province is selected
-    // $('#province').on('change', function () {
-    //   const selectedProvinceId = $(this).val();
-    //   fetch(`http://192.168.1.13:8000/api/kabupaten/${selectedProvinceId}?limit=38&page=1`)
-    //     .then(response => response.json())
-    //     .then(regencies => {
-    //
-    //       selectRegency.select2(); // Reinitialize Select2 after appending all options
-    //     })
-    //     .catch(error => console.error('Error fetching regencies:', error));
-    // });
-
-    // // Event listener to trigger population of districts when regency is selected
-    // $('#regency').on('change', function () {
-    //   const selectedRegencyId = $(this).val();
-    //   populateDistricts(selectedRegencyId);
-    // });
-
-    // // Fetch provinces and populate select dropdown
-    // fetch('http://192.168.1.13:8000/api/provinsi?limit=38&page=1')
-    //   .then(response => response.json())
-    //   .then(provinces => {
-    //
-    //     provinces.forEach(province => {
-    //
-    //     });
-    //     selectProvince.select2(); // Initialize Select2 after appending all options
-    //   })
-    //   .catch(error => console.error('Error fetching provinces:', error));
-
+      });
+    });
   </script>
+  
   <script>
     function validateFileSize() {
       // You can add more file input validations here if needed
@@ -528,7 +510,7 @@ $jabatan = $_GET['nama'];
     }
     var id = localStorage.getItem('key');
     var rotiBakar = document.getElementById('sembunyi');
-    rotiBakar.value = id
+    rotiBakar.value = id;
     var selectedPosisi = document.getElementById("posisi").value;
 
     if (selectedPosisi === 'OPERATOR PRODUKSI') {
@@ -597,67 +579,6 @@ $jabatan = $_GET['nama'];
     });
 
   </script>
-  <!-- <script src="../wilayah/provinsi.js"></script>
-
-  <script src="../wilayah/kecamatan.js"></script>
-  <script src="../wilayah/kabupaten.js"></script>
-  <script>
-
-    $(document).ready(function () {
-
-      function populateRegions() {
-        const selectedProvinceCode = $('#province').val(); // Get the selected province code
-        const provinsiId = data.find(item => item.code === selectedProvinceCode).id; // Find the province ID based on the selected province code
-
-        const region = kabupaten.filter(item => item.provinsi_id === provinsiId);
-
-        // Populate the select regency dropdown
-        const selectRegency = $('#regency');
-        selectRegency.empty(); // Clear previous options
-        selectRegency.append(`<option value="">--Pilih Kabupaten--</option>`);
-        region.forEach(item => {
-          selectRegency.append(`<option value="${item.id}">${item.name}</option>`);
-        });
-
-        // Clear and disable district dropdown
-        const selectDistrict = $('#district');
-        selectDistrict.empty().prop('disabled', true).select2(); // Clear options and disable
-
-        // Re-enable district dropdown when a region is selected
-        selectRegency.change(function () {
-          const selectedRegencyId = $(this).val(); // Get the selected region (kabupaten) ID
-
-          // Filter districts based on the selected region ID
-          const kecamatan = distrik.filter(item => item.kabupaten_id == selectedRegencyId);
-
-          // Populate the district dropdown
-          selectDistrict.empty().prop('disabled', false); // Clear previous options and enable
-          selectDistrict.append(`<option value="">--Pilih Kecamatan--</option>`);
-          kecamatan.forEach(district => {
-            selectDistrict.append(`<option value="${district.id}">${district.name}</option>`);
-          });
-          
-        });
-      }
-
-      // Populate province select dropdown
-      const selectProvince = $('#province');
-      data.forEach(item => {
-        selectProvince.append(`<option value="${item.code}">${item.name}</option>`);
-      });
-
-      // Initial population of regions
-      populateRegions();
-
-      // Bind onchange event to province select
-      selectProvince.change(function () {
-        populateRegions(); // Call the function to repopulate regions on province change
-      });
-    });
-
-  </script> -->
-
-
   <script>
     $(document).ready(function () {
       // Load province data

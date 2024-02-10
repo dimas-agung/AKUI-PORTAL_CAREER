@@ -83,15 +83,16 @@ $response = curl_exec($ch);
 //   
 //   // exit();
 // }
-$data = json_decode($response);
 
-if ($data->success === true) {
-  header('Location: Thanks.php');
-} elseif ($data->success === false) {
-  header('Location: err.php?nama=' . $_POST['namaJ']);
+// Your existing code
+
+$responseData = json_decode($response);
+
+if ($responseData->success == true) {
+  $result = array("success" => true, "message" => $responseData->message);
 } else {
-  header('Location: 404.php');
+  $result = array("success" => false, "message" => $responseData->message);
 }
 
-echo $response;
+echo json_encode($result);
 ?>

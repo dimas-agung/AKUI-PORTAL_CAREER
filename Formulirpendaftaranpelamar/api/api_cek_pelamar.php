@@ -6,7 +6,7 @@ $jabatan_id = $_GET['jabatan_id'];
 // Validate or sanitize input as needed
 
 // Build the URL with query parameters
-$url = $link . 'api/Pelamar?nik=' . urlencode($nik) . '&unit_id=' . urlencode($jabatan_id);
+$url = $link . 'api/Pelamar?nik=' . urlencode($nik) . '&job_title_id=' . urlencode($jabatan_id);
 
 // Initialize cURL session
 $ch = curl_init();
