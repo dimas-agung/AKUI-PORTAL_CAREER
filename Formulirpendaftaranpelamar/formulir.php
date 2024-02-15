@@ -372,7 +372,7 @@ $jabatan = $_GET['nama'];
                           class="form-control" required type="file" id="formFile">
                       </ol>
                     </div>
-                    <input type="hidden" id="sembunyi" name="jabatan_id" value="">
+                    <input type="hidden" required id="sembunyi" name="jabatan_id" value="">
                     <input type="hidden" id="o" name="status" value="PENDING">
                     <input type="hidden" name="namaJ" value="<?= $jabatan ?>">
                     <button class="btn btn-warning text-light" onsubmit="submitForm()">Submit</button>
@@ -422,7 +422,8 @@ $jabatan = $_GET['nama'];
               Swal.fire({
                 icon: 'success',
                 title: 'Success',
-                text: responseData.message
+                text: responseData.message,
+                html: true
               }).then((result) => {
                 if (result.isConfirmed) {
                   window.location.href = 'thanks.php';
@@ -432,22 +433,27 @@ $jabatan = $_GET['nama'];
               Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: responseData.message
+                text: responseData.message,
+                html: true
               });
             }
           },
           error: function (xhr, status, error) {
+            var errorResponse = JSON.parse(xhr.responseText);
             Swal.fire({
               icon: 'error',
               title: 'Error',
-              text: 'An unexpected error occurred. Please try again later.'
+              html: `<h1 class="mt-3">${errorResponse.message}</h1>
+        <p> mohon maaf server sedang dalam perbaikan tunggu beberapa saat atau silahkan menghubungi nomor berikut
+        <a href="https://wa.me/+6281216552207" > Tim HR</a>
+      </p>`
             });
           }
         });
       });
     });
   </script>
-  
+
   <script>
     function validateFileSize() {
       // You can add more file input validations here if needed
@@ -508,9 +514,7 @@ $jabatan = $_GET['nama'];
       else
         document.getElementById("relasi").style.display = "none";
     }
-    var id = localStorage.getItem('key');
-    var rotiBakar = document.getElementById('sembunyi');
-    rotiBakar.value = id;
+
     var selectedPosisi = document.getElementById("posisi").value;
 
     if (selectedPosisi === 'OPERATOR PRODUKSI') {
@@ -525,9 +529,12 @@ $jabatan = $_GET['nama'];
       success: function (data) {
         // console.log(data);
         // localStorage.clear();
-        localStorage.setItem('key', JSON.stringify(data.data.id));
-        // id = data.data.id;
+        // var id = localStorage.setItem('key', JSON.stringify(data.data.id));
+        // id = data.data.id;localStorage.getItem('key');
 
+        console.log(JSON.stringify(data.data.id));
+        var rotiBakar = document.getElementById('sembunyi');
+        rotiBakar.value = JSON.stringify(data.data.id);
         // Now you can work with the 'id' or other data here
         // console.log(id);
         // localStorage.setItem('key', data.data.id)

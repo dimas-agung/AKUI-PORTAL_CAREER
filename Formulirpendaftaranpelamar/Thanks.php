@@ -28,7 +28,7 @@
     <div class="container text-center">
         <h1 class="mb-4">Terima Kasih</h1>
         <p class="lead">Datamu akan kami process secepatnya</p>
-        <a href="../../index.php" class="btn btn-primary btn-lg">Back to Homepage</a>
+        <a href="../index.php" class="btn btn-primary btn-lg">Back to Homepage</a>
     </div>
     <script>
         localStorage.clear();

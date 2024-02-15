@@ -23,7 +23,7 @@ $nama_fileberkas = $_FILES['fileberkas']["name"];
 $file_tmp_fileberkas = $_FILES["fileberkas"]["tmp_name"];
 $file_path_fileberkas = $current_directory . '/storage/' . $nama_fileberkas;
 move_uploaded_file($file_tmp_fileberkas, $file_path_fileberkas);
-// var_dump($_POST);return;
+
 $data = array(
   'scan_ktp' => new CURLfile($file_path_ktp),
   'nama' => $_POST['nama'],
@@ -68,31 +68,27 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 $response = curl_exec($ch);
-// if (curl_errno($ch)) {
-//   $error = curl_error($ch);
-//   // Check if the error message indicates a MySQL error
-//   if (strpos($error, 'MySQL') !== false) {
-//     
-//     exit();
-//   } else {
-//     
-//     exit();
-//   }
-// } else {
-//   curl_close($ch);
-//   
-//   // exit();
-// }
 
-// Your existing code
-
-$responseData = json_decode($response);
-
-if ($responseData->success == true) {
-  $result = array("success" => true, "message" => $responseData->message);
+if ($response === false) {
+  $error = curl_error($ch);
+  if (strpos($error, 'MySQL') !== false) {
+    $error_message = "Maaf, terjadi kesalahan pada server database. Silakan coba lagi nanti.";
+  } else {
+    $error_message = "
+                      Mohon maaf server sedang dalam perbaikan. Silahkan hubungi +6281216552207 (Tim HR) untuk info lebih lanjut
+                      ";
+  }
+  echo json_encode(array("success" => false, "message" => $error_message));
 } else {
-  $result = array("success" => false, "message" => $responseData->message);
+  $responseData = json_decode($response);
+  if ($responseData->success == true) {
+    $result = array("success" => true, "message" => $responseData->message);
+  } else {
+    $result = array("success" => false, "message" => $responseData->message);
+  }
+  echo json_encode($result);
 }
 
-echo json_encode($result);
+
+curl_close($ch);
 ?>
