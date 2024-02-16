@@ -345,7 +345,7 @@ $jabatan = $_GET['nama'];
           // });
 
           // Convert the array to a JSON string before storing in localStorage
-          localStorage.setItem('key', JSON.stringify(data.data));
+          localStorage.setItem('key', JSON.stringify(data.jobPosting.id));
         },
         error: function (xhr, status, error) {
           console.error(error);

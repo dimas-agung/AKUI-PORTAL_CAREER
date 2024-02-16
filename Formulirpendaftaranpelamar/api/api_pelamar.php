@@ -48,6 +48,7 @@ $data = array(
   'alamat_domisili' => $_POST['alamat_domisili'],
   'nomor_telp' => $_POST['nomor_telpon'],
   'job_title_id' => $_POST['jabatan_id'],
+  'job_posting_id' => $_POST['posting_id'],
   'status_pengalaman' => $_POST['pengalaman_bekerja'],
   'ekspektasi_salary' => $_POST['ekspektasi_salary'],
   'kk' => new CURLfile($file_path_kk),
@@ -75,8 +76,9 @@ if ($response === false) {
     $error_message = "Maaf, terjadi kesalahan pada server database. Silakan coba lagi nanti.";
   } else {
     $error_message = "
-                      Mohon maaf server sedang dalam perbaikan. Silahkan hubungi +6281216552207 (Tim HR) untuk info lebih lanjut
-                      ";
+    <p> mohon maaf server sedang dalam perbaikan tunggu beberapa saat atau silahkan menghubungi nomor berikut
+    <a href='https://wa.me/+6281216552207'> Tim HR</a>
+  </p>";
   }
   echo json_encode(array("success" => false, "message" => $error_message));
 } else {

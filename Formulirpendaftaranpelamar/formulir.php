@@ -373,6 +373,7 @@ $jabatan = $_GET['nama'];
                       </ol>
                     </div>
                     <input type="hidden" required id="sembunyi" name="jabatan_id" value="">
+                    <input type="hidden" required id="posting" name="posting_id" value="">
                     <input type="hidden" id="o" name="status" value="PENDING">
                     <input type="hidden" name="namaJ" value="<?= $jabatan ?>">
                     <button class="btn btn-warning text-light" onsubmit="submitForm()">Submit</button>
@@ -422,8 +423,7 @@ $jabatan = $_GET['nama'];
               Swal.fire({
                 icon: 'success',
                 title: 'Success',
-                text: responseData.message,
-                html: true
+                html: responseData.message,
               }).then((result) => {
                 if (result.isConfirmed) {
                   window.location.href = 'thanks.php';
@@ -433,8 +433,7 @@ $jabatan = $_GET['nama'];
               Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: responseData.message,
-                html: true
+                html: responseData.message
               });
             }
           },
@@ -532,8 +531,11 @@ $jabatan = $_GET['nama'];
         // var id = localStorage.setItem('key', JSON.stringify(data.data.id));
         // id = data.data.id;localStorage.getItem('key');
 
-        console.log(JSON.stringify(data.data.id));
+        // console.log(JSON.stringify(data.data.id));
         var rotiBakar = document.getElementById('sembunyi');
+        var rotiJamur = document.getElementById('posting');
+        rotiJamur.value = localStorage.getItem('key');
+        // console.log(rotiJamur.value);
         rotiBakar.value = JSON.stringify(data.data.id);
         // Now you can work with the 'id' or other data here
         // console.log(id);
