@@ -351,9 +351,11 @@ $jabatan = $_GET['nama'];
                               <input type="file" class="form-control" name="ktp_asli" id="ktp_aseli">
                             </li> -->
                         <li>
-                          <label for="kk" class="form-label label">KARTU KELUARGA</label>
-                          <input type="file" class="form-control" accept="application/pdf, .jpeg" name="kartu_keluarga"
-                            id="kk" required onchange="validateFile(this, 5000)">
+                          <label for="kk" class="form-label label">KARTU KELUARGA </label>
+                          <p>Dokumen bisa berupa pdf /
+                            jpeg, jpg, png</p>
+                          <input type="file" class="form-control" accept="application/pdf, .jpeg ,.jpg , .png"
+                            name="kartu_keluarga" id="kk" required onchange="validateFile(this, 5000)">
                         </li>
 
                         <li><label class="form-label label" for=""> Pass Foto</label>
@@ -536,7 +538,7 @@ $jabatan = $_GET['nama'];
         var rotiJamur = document.getElementById('posting');
         rotiJamur.value = localStorage.getItem('key');
         // console.log(rotiJamur.value);
-        rotiBakar.value = JSON.stringify(data.data.id);
+        rotiBakar.value = JSON.stringify(data.id);
         // Now you can work with the 'id' or other data here
         // console.log(id);
         // localStorage.setItem('key', data.data.id)

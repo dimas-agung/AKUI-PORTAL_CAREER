@@ -307,37 +307,40 @@
             var htmlContent = '';
             // Iterate through the array and build HTML content
             jobData.forEach(function (job) {
-              // Check if fresh_graduate is 'YA'
-              if (job.job_requirement.fresh_graduate === 'Tidak') {
-                // If 'YA', add class 'hide'
+              // Check if job_requirement exists and fresh_graduate is 'Tidak'
+              if (job.job_requirement && job.job_requirement.fresh_graduate === 'Tidak') {
+                // If 'Tidak', add class 'hide'
                 htmlContent += `
-      <a class="job_card hide" href="infor.php?nama=${job.id}">
-        <div class="job">
-          <div class="text">
-            <span class="category">${job.job_title.nama}</span>
-            <h2>${job.job_title.nama}</h2>
-            <span>${job.job_title.nama}</span>
-          </div>
-        </div>
-        <ion-icon name="arrow-forward-outline"></ion-icon>
-      </a>
-    `;
-              } else if (job.job_requirement.fresh_graduate === 'Ya') {
-                // If not 'YA', add class 'wau'
+            <a class="job_card hide" href="infor.php?nama=${job.id}">
+                <div class="job">
+                    <div class="text">
+                        <span class="category">${job.job_title.nama}</span>
+                        <h2>${job.job_title.nama}</h2>
+                        <span>${job.job_title.nama}</span>
+                    </div>
+                </div>
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+            </a>
+        `;
+              }
+              // Check if job_requirement exists and fresh_graduate is 'Ya'
+              else if (job.job_requirement && job.job_requirement.fresh_graduate === 'Ya') {
+                // If 'Ya', add class 'wau'
                 htmlContent += `
-      <a class="job_card wau" href="infor.php?nama=${job.id}">
-        <div class="job">
-          <div class="text">
-            <span class="category">${job.job_title.nama}</span>
-            <h2>${job.job_title.nama}</h2>
-            <span>${job.job_title.nama}</span>
-          </div>
-        </div>
-        <ion-icon name="arrow-forward-outline"></ion-icon>
-      </a>
-    `;
+            <a class="job_card wau" href="infor.php?nama=${job.id}">
+                <div class="job">
+                    <div class="text">
+                        <span class="category">${job.job_title.nama}</span>
+                        <h2>${job.job_title.nama}</h2>
+                        <span>${job.job_title.nama}</span>
+                    </div>
+                </div>
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+            </a>
+        `;
               }
             });
+
             // Display the HTML content in a container
             $('#output').html(htmlContent);
           },
