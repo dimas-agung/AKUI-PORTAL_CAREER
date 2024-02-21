@@ -627,7 +627,7 @@ $jabatan = $_GET['nama'];
             // Iterate over each kabupaten and display only the ones matching the selected province
             $.each(data, function (index, kabupaten) {
               if (kabupaten.provinsi_id == selectedProvinceId) {
-                $('#kabupaten').append(`<option value="${kabupaten.name}" data-id="${kabupaten.id}" data-kabupaten="${kabupaten.kabupaten}">${kabupaten.name}</option>`);
+                $('#kabupaten').append(`<option value="${kabupaten.name}" data-id="${kabupaten.id}" data-kabupaten="${kabupaten.kabupaten}">${kabupaten.name} ${kabupaten.type}</option>`);
               }
             });
 
