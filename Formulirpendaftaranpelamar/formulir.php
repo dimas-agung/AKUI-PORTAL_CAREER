@@ -538,7 +538,7 @@ $jabatan = $_GET['nama'];
         var rotiJamur = document.getElementById('posting');
         rotiJamur.value = localStorage.getItem('key');
         // console.log(rotiJamur.value);
-        rotiBakar.value = JSON.stringify(data.id);
+        rotiBakar.value = JSON.stringify(data.data.id);
         // Now you can work with the 'id' or other data here
         // console.log(id);
         // localStorage.setItem('key', data.data.id)
