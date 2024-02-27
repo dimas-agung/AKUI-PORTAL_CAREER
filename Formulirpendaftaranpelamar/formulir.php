@@ -431,7 +431,7 @@ $jabatan = $_GET['nama'];
                 html: responseData.message,
               }).then((result) => {
                 if (result.isConfirmed) {
-                  window.location.href = 'thanks.php';
+                  window.location.href = 'Thanks.php';
                 }
               });
             } else {
