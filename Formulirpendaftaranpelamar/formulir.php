@@ -378,7 +378,7 @@ $jabatan = $_GET['nama'];
                     <input type="hidden" required id="posting" name="posting_id" value="">
                     <input type="hidden" id="o" name="status" value="PENDING">
                     <input type="hidden" name="namaJ" value="<?= $jabatan ?>">
-                    <button class="btn btn-warning text-light" onsubmit="submitForm()">Submit</button>
+                    <button id="btn" class="btn btn-warning text-light" onsubmit="submitForm()">Submit</button>
 
             </form>
           </div>
@@ -413,6 +413,9 @@ $jabatan = $_GET['nama'];
 
         var formData = new FormData(this);
 
+        var submitButton = $('#btn');
+        submitButton.prop('disabled', true); // Disable the submit button
+
         $.ajax({
           url: 'api/api_pelamar.php',
           type: 'POST',
@@ -437,6 +440,7 @@ $jabatan = $_GET['nama'];
                 title: 'Error',
                 html: responseData.message
               });
+              submitButton.prop('disabled', false);
             }
           },
           error: function (xhr, status, error) {
@@ -445,11 +449,15 @@ $jabatan = $_GET['nama'];
               icon: 'error',
               title: 'Error',
               html: `<h1 class="mt-3">${errorResponse.message}</h1>
-        <p> mohon maaf server sedang dalam perbaikan tunggu beberapa saat atau silahkan menghubungi nomor berikut
-        <a href="https://wa.me/+6281216552207" > Tim HR</a>
-      </p>`
+    <p> mohon maaf server sedang dalam perbaikan tunggu beberapa saat atau silahkan menghubungi nomor berikut
+    <a href="https://wa.me/+6281216552207" > Tim HR</a>
+  </p>`
             });
-          }
+          },
+
+          // Re-enable the submit button after the request completes (whether success or error)
+
+
         });
       });
     });
